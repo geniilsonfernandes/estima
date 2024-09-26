@@ -1,0 +1,24 @@
+.main {
+    position: relative;
+}
+
+.camera {
+   position: absolute;
+   width: 100%;
+   height: 30px;
+   background: rgba(0, 0, 0, 0.319);
+   color: white;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   left: 0;
+   bottom: 0;
+   opacity: 0;
+   transition: 0.3s;
+   cursor: pointer;
+}
+
+.main:hover .camera {
+
+    opacity: 1;
+}
