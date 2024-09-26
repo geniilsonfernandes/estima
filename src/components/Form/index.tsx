@@ -3,22 +3,14 @@ import {
   IconBrandInstagram,
   IconBrandLinkedin,
   IconBrandTwitter,
+  IconCurrencyDollar,
 } from '@tabler/icons-react';
-import {
-  Box,
-  Divider,
-  Flex,
-  Grid,
-  RingProgress,
-  Stack,
-  Text,
-  Textarea,
-  Title,
-} from '@mantine/core';
+import { Box, Divider, Flex, Grid, RingProgress, Stack, Text, Title } from '@mantine/core';
 import { CardForm } from '@/components/CardForm';
-import { Input } from '@/components/Input';
+import { DateInput, Input, NumberInput, Textarea } from '@/components/Input';
 import { CollapseStack } from '../CollapseStack';
 import { DndList } from '../DndList/DndList';
+import { ImageCheckbox } from '../ImageCheckbox/ImageCheckbox';
 import { LogoUpload } from '../LogoUpload/LogoUpload';
 
 export const Form = () => {
@@ -45,7 +37,7 @@ export const Form = () => {
           </Title>
         </Box>
         <Flex gap="md">
-          <RingProgress thickness={3} size={40} sections={[{ value: 80, color: 'dark' }]} />
+          <RingProgress thickness={3} size={40} sections={[{ value: 80, color: 'estimou' }]} />
         </Flex>
       </Flex>
       <Divider mb="xs" />
@@ -54,7 +46,7 @@ export const Form = () => {
         helpText="Especifique os dados empresa ou de você mesmo. Use o campo de detalhes para especificar seu endereço."
       >
         <Grid my="lg" columns={12}>
-          <Grid.Col span={2} pt="16px">
+          <Grid.Col span={2} pt="sm">
             <LogoUpload />
           </Grid.Col>
           <Grid.Col span={10}>
@@ -90,7 +82,6 @@ export const Form = () => {
           </Grid>
         </CollapseStack>
       </CardForm>
-
       <CardForm
         label="Dados da cliente"
         helpText="Especifique o nome do seu cliente. Use os campos para especificar as informações de contato do cliente."
@@ -115,28 +106,72 @@ export const Form = () => {
       </CardForm>
       <CardForm
         label="Itens do orçamento"
-        helpText="You can add links to websites you want hiring managers to see! Perhaps It will be a link to your
-portfolio, LinkedIn profile, or personal website"
+        helpText="You can add links to websites you want hiring managers to see!"
       >
-        <Box my="lg">
+        <Box pt="sm">
           <DndList />
         </Box>
       </CardForm>
       <CardForm
         label="Dados do orçamento"
-        helpText="You can add links to websites you want hiring managers to see! Perhaps It will be a link to your
-portfolio, LinkedIn profile, or personal website"
+        helpText="Especifique o nome do seu cliente. Use os campos para especificar as informações de contato do cliente."
       >
-        ...
+        <Grid pt="sm">
+          <Grid.Col span={4}>
+            <Input label="Número do orçamento" type="number" />
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <DateInput label="data" />
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <DateInput label="Vencimento" />
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <NumberInput
+              label="Acréscimo (R$)"
+              leftSection={<IconCurrencyDollar />}
+              decimalSeparator=","
+              hideControls
+              left="R$"
+            />
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <NumberInput
+              label="Desconto (R$)"
+              leftSection={<IconCurrencyDollar />}
+              decimalSeparator=","
+              hideControls
+              left="R$"
+            />
+          </Grid.Col>
+          <Grid.Col span={12}>
+            <Textarea label="Observações" variant="filled" autosize minRows={2} />
+          </Grid.Col>
+        </Grid>
       </CardForm>
-      <CardForm
-        label="Notes to add"
-        helpText="You can add links to websites you want hiring managers to see! Perhaps It will be a link to your
-portfolio, LinkedIn profile, or personal website"
-      >
+      <CardForm label="Formas de pagamento" helpText="You can add links to websites">
+        <Grid my="lg">
+          <Grid.Col span={6}>
+            <ImageCheckbox title="Boleto" />
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <ImageCheckbox title="Cartão de Crédito" />
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <ImageCheckbox title="Cartão de Debito" />
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <ImageCheckbox title="Pix" />
+          </Grid.Col>
+          <Grid.Col span={6}>
+            <ImageCheckbox title="Transferência" />
+          </Grid.Col>
+        </Grid>
+      </CardForm>
+      <CardForm label="Notas do orçamento" helpText="You can add links to websites">
         <Grid my="lg">
           <Grid.Col span={12}>
-            <Textarea label="Notes" placeholder="Input placeholder" variant="filled" />
+            <Textarea label="Observações" variant="filled" autosize minRows={5} />
           </Grid.Col>
         </Grid>
       </CardForm>

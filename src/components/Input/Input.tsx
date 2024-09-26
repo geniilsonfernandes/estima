@@ -1,35 +1,87 @@
 import {
-  Input as MantineInput,
-  InputProps as MantineInputProps,
+  NumberInput as MantineNumberInput,
+  Textarea as MantineTextarea,
+  NumberInputProps,
+  rem,
+  TextareaProps,
+  TextInput,
+  TextInputProps,
   useMantineTheme,
 } from '@mantine/core';
+import { DateInputProps, DateInput as MantineDateInput } from '@mantine/dates';
 
-type InputProps = {
-  label: string;
-  placeholder?: string;
-} & MantineInputProps;
-
-export const Input = ({ label, placeholder, ...props }: InputProps) => {
+export const Input = (props: TextInputProps) => {
   const theme = useMantineTheme();
+
   return (
-    <MantineInput.Wrapper
-      label={label}
+    <TextInput
       styles={{
         label: {
           marginBottom: '8px',
           color: theme.colors.dark[2],
+          fontSize: rem(14),
         },
       }}
-    >
-      <MantineInput
-        placeholder={placeholder}
-        // component={IMaskInput}
-        // mask="00.000.000/0000-00"
+      variant="filled"
+      size="lg"
+      {...props}
+    />
+  );
+};
 
-        variant="filled"
-        size="lg"
-        {...props}
-      />
-    </MantineInput.Wrapper>
+export const DateInput = (props: DateInputProps) => {
+  const theme = useMantineTheme();
+
+  return (
+    <MantineDateInput
+      styles={{
+        label: {
+          marginBottom: '8px',
+          color: theme.colors.dark[2],
+          fontSize: rem(14),
+        },
+      }}
+      variant="filled"
+      size="lg"
+      {...props}
+    />
+  );
+};
+
+export const NumberInput = (props: NumberInputProps) => {
+  const theme = useMantineTheme();
+
+  return (
+    <MantineNumberInput
+      styles={{
+        label: {
+          marginBottom: '8px',
+          color: theme.colors.dark[2],
+          fontSize: rem(14),
+        },
+      }}
+      variant="filled"
+      size="lg"
+      {...props}
+    />
+  );
+};
+
+export const Textarea = (props: TextareaProps) => {
+  const theme = useMantineTheme();
+
+  return (
+    <MantineTextarea
+      styles={{
+        label: {
+          marginBottom: '8px',
+          color: theme.colors.dark[2],
+          fontSize: rem(14),
+        },
+      }}
+      variant="filled"
+      size="lg"
+      {...props}
+    />
   );
 };
