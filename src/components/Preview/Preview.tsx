@@ -10,7 +10,7 @@ import { useBuilderStore } from '@/modules/builder/store';
 import { formatCurrency } from '@/shared/utils/formatCurrency';
 
 export const Preview = () => {
-  const { company, customer, services, budgedInfo } = useBuilderStore((state) => state);
+  const { company, customer, services } = useBuilderStore((state) => state);
 
   const rows = services.map((element) => (
     <Table.Tr key={element.name}>

@@ -3,7 +3,6 @@ import { IconPlus } from '@tabler/icons-react';
 import cx from 'clsx';
 import { Button } from '@mantine/core';
 import { randomId, useListState } from '@mantine/hooks';
-import { BudgetForm } from '../BudgetForm/BudgetForm';
 import classes from './DndList.module.css';
 
 const data = [
@@ -29,7 +28,7 @@ export function DndList() {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <BudgetForm />
+          ...
         </div>
       )}
     </Draggable>
