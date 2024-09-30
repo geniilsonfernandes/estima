@@ -10,7 +10,7 @@ const estimou: MantineColorsTuple = [
   '#60aa5d',
   '#4f954c',
   '#448542',
-  '#357235',
+  '#25392f',
 ];
 
 export const theme = createTheme({

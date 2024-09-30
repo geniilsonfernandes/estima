@@ -11,6 +11,7 @@ import {
   IconUser,
 } from '@tabler/icons-react';
 import { Center, rem, Stack, Tooltip, UnstyledButton } from '@mantine/core';
+import { Logo } from '../Logo/Logo';
 import classes from './NavbarMinimal.module.css';
 
 interface NavbarLinkProps {
@@ -54,7 +55,9 @@ export function NavbarMinimal() {
 
   return (
     <nav className={classes.navbar}>
-      <Center>...</Center>
+      <Center>
+        <Logo />
+      </Center>
 
       <div className={classes.navbarMain}>
         <Stack justify="center" gap={0}>

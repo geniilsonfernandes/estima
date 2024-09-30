@@ -10,7 +10,8 @@ export const LogoUpload = () => {
   return (
     <>
       <Flex
-        h="100%"
+        h="80px"
+        w="80px"
         style={{ borderRadius: '4px', overflow: 'hidden' }}
         c="dark.2"
         bg="gray.2"
