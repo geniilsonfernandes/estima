@@ -1,6 +1,6 @@
 import { IconCurrencyDollar } from '@tabler/icons-react';
 import { Grid } from '@mantine/core';
-import { Input, InputMask } from '@/components/Input';
+import { Input, InputMask } from '@/shared/components/Input';
 import { formatCurrency } from '@/shared/utils/formatCurrency';
 import { onlyNumber } from '@/shared/utils/onlyNumber';
 import { IService, useBuilderStore } from '../../store';

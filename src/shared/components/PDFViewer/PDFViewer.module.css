@@ -1,0 +1,35 @@
+.wrapper {
+ 
+  position: relative;
+
+  Width: 100%;
+  Height: 100%;
+  background: var(--mantine-color-estimou-9);
+}
+
+.previousDocument {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  z-index: 100;
+}
+
+.renderingDocument {
+    display: none;
+  left: 50%;
+  top: 50%;
+  transform: translate(-30%, -30%);
+  position: absolute;
+  z-index: 200;
+  opacity: 0.5;
+}
+
+.textLoader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-30%, -30%);
+  z-index: 300;
+  
+}

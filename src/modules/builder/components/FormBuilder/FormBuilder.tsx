@@ -6,11 +6,11 @@ import {
   IconCurrencyDollar,
 } from '@tabler/icons-react';
 import { Flex, Grid, Stack } from '@mantine/core';
-import { CardForm } from '@/components/CardForm';
-import { CollapseStack } from '@/components/CollapseStack';
-import { ImageCheckbox } from '@/components/ImageCheckbox/ImageCheckbox';
-import { DateInput, Input, InputMask, Textarea } from '@/components/Input';
-import { LogoUpload } from '@/components/LogoUpload/LogoUpload';
+import { CardForm } from '@/shared/components/CardForm';
+import { CollapseStack } from '@/shared/components/CollapseStack';
+import { ImageCheckbox } from '@/shared/components/ImageCheckbox/ImageCheckbox';
+import { DateInput, Input, InputMask, Textarea } from '@/shared/components/Input';
+import { LogoUpload } from '@/shared/components/LogoUpload/LogoUpload';
 import { useBuilderStore } from '../../store';
 import { ServiceList } from '../ServiceList/ServiceList';
 
