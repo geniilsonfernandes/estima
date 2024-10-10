@@ -1,45 +1,28 @@
-import { Flex, Modal, Stack, Text, Title, useMantineTheme } from '@mantine/core';
-import { SearchInput } from '@/shared/components/SearchInput/SearchInput';
-import { TemplateButton } from '@/shared/components/TemplateButton/TemplateButton';
-import { templates, useTemplateStore } from '../../store';
+import { IconSparkles, IconStack2Filled } from '@tabler/icons-react';
+import { Modal, ScrollArea, Stack } from '@mantine/core';
+import { useTemplateStore } from '../../store';
+import { TemplateSelectContent } from './TemplateSelectContent';
+import { TemplateSelectFooter } from './TemplateSelectFooter';
+import { TemplateSelectHeader } from './TemplateSelectHeader';
 
 export const TemplateSelect = () => {
-  const { radius } = useMantineTheme();
   const { opened, openModal, setTemplate, template } = useTemplateStore((state) => state);
 
   return (
-    <Modal opened={opened} onClose={() => openModal(false)} size="80%">
-      <Stack mx="auto" px="lg" maw={{ base: '100%', sm: '600px' }} align="stretch" justify="center">
-        <Title order={3} c="dark.4" ta="center">
-          Selecione um modelo de orçamento {template}
-        </Title>
-        <Text c="dimmed" ta="center" size="md" mx="auto">
-          Clique no botão abaixo para selecionar o modelo de orçamento.
-        </Text>
-        <SearchInput placeholder="Pesquisar modelos" />
+    <Modal
+      opened={opened}
+      onClose={() => openModal(false)}
+      size="100%"
+      withCloseButton={false}
+      scrollAreaComponent={ScrollArea.Autosize}
+      padding={0}
+    >
+      <TemplateSelectHeader />
+      <Stack p="xl">
+        <TemplateSelectContent icon={<IconSparkles size={18} />} label="Populares:" />
+        <TemplateSelectContent icon={<IconStack2Filled size={18} />} label="Todos os modelos:" />
+        <TemplateSelectFooter />
       </Stack>
-      <Flex
-        mt="xl"
-        gap="sm"
-        justify="center"
-        align="flex-start"
-        direction="row"
-        wrap="wrap"
-        bg="dark.2"
-        p="lg"
-        style={{
-          borderRadius: radius.md,
-        }}
-      >
-        {templates.map((temp) => (
-          <TemplateButton
-            key={temp}
-            label={temp}
-            onClick={() => setTemplate(temp)}
-            active={temp === template}
-          />
-        ))}
-      </Flex>
     </Modal>
   );
 };

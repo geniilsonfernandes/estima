@@ -1,5 +1,6 @@
-import { Card, Image, Text, useMantineTheme } from '@mantine/core';
-import { A4_Size } from '@/shared/constant/constants';
+import { Badge, Box, Flex, Image, Text } from '@mantine/core';
+import placeholder from '@/shared/resource/tamplate-placeholder.jpg';
+import classes from './TemplateButton.module.css';
 
 type TemplateButtonProps = {
   label: string;
@@ -8,24 +9,17 @@ type TemplateButtonProps = {
 };
 
 export const TemplateButton = ({ label, onClick, active }: TemplateButtonProps) => {
-  const { radius, colors } = useMantineTheme();
   return (
-    <Card w={A4_Size.width / 2} p="xs" bg="transparent" onClick={onClick}>
-      <Text c="white" mb="xs" ta="center">
-        {label}
-      </Text>
-      <Image
-        style={{
-          borderRadius: radius.md,
-          cursor: 'pointer',
-          borderWidth: 4,
-          borderStyle: 'solid',
-          borderColor: active ? colors.estimou[5] : 'transparent',
-          height: 300,
-        }}
-        src="https://cdn02.jotfor.ms/templates/screenshot/form-templates/responsive-layout-general-inquiry-contact-form.webp?w=310&v=2296733943&t=classic"
-        alt="Lula"
-      />
-    </Card>
+    <Box onClick={onClick} aria-label={active ? label : undefined}>
+      <Image src={placeholder} className={classes.image} alt="No way!" />
+      <Flex align="center" justify="space-between" mt="xs" px="xs">
+        <Text fw={500} size="sm">
+          {label}
+        </Text>
+        <Badge color="gray" size="sm" radius="sm">
+          Grátis
+        </Badge>
+      </Flex>
+    </Box>
   );
 };

@@ -1,0 +1,15 @@
+
+
+.image {
+    height: 180px;
+    border-radius: var(--mantine-radius-md);
+    border: rem(2px) solid #ffffff00;
+    transition: 0.3s;
+    opacity: 1;
+    &:hover {
+        cursor: pointer;
+        opacity: 0.8;
+        transition: 0.3s;
+        border: rem(2px) solid var(--mantine-color-estimou-5);
+    }
+}
