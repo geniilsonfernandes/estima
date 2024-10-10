@@ -1,6 +1,5 @@
 import { createTheme, MantineColorsTuple } from '@mantine/core';
 
-
 const estimou: MantineColorsTuple = [
   '#f3f7f5',
   '#e7ebe9',
