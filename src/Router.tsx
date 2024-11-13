@@ -3,6 +3,7 @@ import { builderRouter } from './modules/builder/router';
 import { siteRoutes } from './modules/site/routes';
 import VladTamplate from './shared/templates/Vlad.tamplate';
 
+
 const router = createBrowserRouter([
   {
     path: 'app',
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
   {
     path: '/template',
     // element: <VladTamplate title="Estimou" />,
-    element: <VladTamplate />,
+    element: <VladTamplate title="Estimou" />,
   },
 ]);
 
