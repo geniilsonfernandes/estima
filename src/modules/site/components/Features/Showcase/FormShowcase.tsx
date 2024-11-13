@@ -1,4 +1,9 @@
-import { IconBrandBehance, IconBrandInstagram, IconBrandTwitter } from '@tabler/icons-react';
+import {
+  IconBrandBehance,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+  IconBrandTwitter,
+} from '@tabler/icons-react';
 import { Grid } from '@mantine/core';
 import { CardForm } from '@/shared/components/CardForm';
 import { Input, InputMask } from '@/shared/components/Input';
@@ -26,7 +31,7 @@ export const FormShowcase = () => {
           <Input label="Instagram" leftSection={<IconBrandInstagram />} />
         </Grid.Col>
         <Grid.Col span={6}>
-          <Input label="Linkedin" />
+          <Input label="Linkedin" leftSection={<IconBrandLinkedin />} />
         </Grid.Col>
         <Grid.Col span={6}>
           <Input label="Twitter" leftSection={<IconBrandTwitter />} />

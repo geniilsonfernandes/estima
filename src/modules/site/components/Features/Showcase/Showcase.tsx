@@ -8,7 +8,7 @@ import classes from './Showcase.module.css';
 export const Showcase = () => {
   return (
     <Flex justify="center" align="center" pos="relative">
-      <Flex className={classes.wrapper}>
+      <Box className={classes.wrapper}>
         <Stack>
           <Box className={classes.budgetForm}>
             <Box className={classes.budgetFormTitle}>
@@ -18,12 +18,12 @@ export const Showcase = () => {
               </Box>
             </Box>
             <FormShowcase />
+            <Flex className={classes.preview}>
+              <Preview />
+            </Flex>
           </Box>
         </Stack>
-        <Flex className={classes.preview}>
-          <Preview />
-        </Flex>
-      </Flex>
+      </Box>
     </Flex>
   );
 };

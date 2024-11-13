@@ -3,7 +3,7 @@
   gap: var(--mantine-spacing-md);
   position: relative;
   z-index: 900;
-  margin-top: -156px;
+  margin-top: -120px;
 
 }
 
@@ -16,9 +16,7 @@
   margin-bottom: var(--mantine-spacing-md);
 }
 .colorPicker {
-
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
 }
 
 .budgetForm {
@@ -27,7 +25,8 @@
   border-radius: var(--mantine-radius-md);
   z-index: 100;
   position: relative;
-  transform: translate3d(10px, -16px, 0px);
+  left: -100%;
+  transform: translate3d(50%, -16px, 0px);
 }
 
 .preview {
@@ -39,6 +38,10 @@
   z-index: 1001;
   height: fit-content;
   background: white;
+
+    position: absolute;
+    right: -500px;
+    top: 0;
 }
 .logo {
   width: 80px;
@@ -67,13 +70,30 @@
 
 @media (max-width: 622px) {
   .wrapper {
-    transform: scale(0.5);
-    height: 700px;
+    transform: scale(0.6);
+    margin-top: -110px;
+
   }
   .budgetForm {
-    transform: translate3d(150px, -56px, 0px);
+    transform: translate3d(85%, -56px, 0px);
   }
   .preview {
-    transform: translate3d(-140px, 156px, 0px);
+    transform: translate3d(-310px, 156px, 0px) scale(0.9);
   }
+ 
+}
+
+@media (max-width: 425px) {
+  .wrapper {
+    transform: scale(0.59);
+    margin-top: -110px;
+
+  }
+  .budgetForm {
+    transform: translate3d(85%, -56px, 0px);
+  }
+  .preview {
+    transform: translate3d(-310px, 156px, 0px) scale(0.9);
+  }
+ 
 }
