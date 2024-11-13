@@ -23,7 +23,7 @@ export const FormBuilder = () => {
         label="Dados da empresa"
         helpText="Especifique os dados empresa ou de você mesmo. Use o campo de detalhes para especificar seu endereço."
       >
-        <Grid my="lg" columns={12}>
+        <Grid my="lg" gutter="xs" columns={12}>
           <Grid.Col span={12}>
             <Flex gap="sm">
               <LogoUpload />

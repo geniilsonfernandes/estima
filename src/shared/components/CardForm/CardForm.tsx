@@ -9,7 +9,7 @@ type CardFormProps = {
 
 export const CardForm = ({ label, helpText, children, contentProps }: CardFormProps) => {
   return (
-    <Card p="lg" bg="#F9F9F9">
+    <Card p="lg" bg="base.0">
       <Title order={3} c="dark.4">
         {label}
       </Title>

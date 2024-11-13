@@ -1,22 +1,35 @@
 import { createTheme, MantineColorsTuple } from '@mantine/core';
 
 const estimou: MantineColorsTuple = [
-  '#f3f7f5',
-  '#e7ebe9',
-  '#cad6d0',
-  '#aac0b5',
-  '#8fad9e',
-  '#7da28f',
-  '#739c87',
-  '#618874',
-  '#557966',
-  '#446957',
+  '#e3fdf9',
+  '#d5f5ef',
+  '#b1e7de',
+  '#89d9cb',
+  '#68ccbb',
+  '#52c5b1',
+  '#43c2ac',
+  '#31ab97',
+  '#229886',
+  '#1D463E',
+];
+const base: MantineColorsTuple = [
+  '#f9f9f9',
+  '#e7e7e7',
+  '#cdcdcd',
+  '#b2b2b2',
+  '#9a9a9a',
+  '#8b8b8b',
+  '#848484',
+  '#717171',
+  '#656565',
+  '#575757',
 ];
 
 export const theme = createTheme({
   /** Put your mantine theme override here */
   colors: {
     estimou,
+    base,
     blackAlpha: [
       'rgba(0, 0, 0, 0)',
       'rgba(0, 0, 0, 0.01)',

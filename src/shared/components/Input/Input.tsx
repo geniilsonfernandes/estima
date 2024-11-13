@@ -3,6 +3,7 @@ import {
   InputBase,
   InputBaseProps,
   NumberInput as MantineNumberInput,
+  MantineSize,
   Textarea as MantineTextarea,
   NumberInputProps,
   rem,
@@ -12,6 +13,12 @@ import {
   useMantineTheme,
 } from '@mantine/core';
 import { DateInputProps, DateInput as MantineDateInput } from '@mantine/dates';
+
+const CONFIG: {
+  SIZE: MantineSize;
+} = {
+  SIZE: 'md',
+};
 
 export const InputMask = (props: InputBaseProps & IMaskInputProps<HTMLInputElement>) => {
   const theme = useMantineTheme();
@@ -31,7 +38,7 @@ export const InputMask = (props: InputBaseProps & IMaskInputProps<HTMLInputEleme
         },
       }}
       variant="filled"
-      size="lg"
+      size={CONFIG.SIZE}
       component={IMaskInput}
       {...props}
     />
@@ -54,8 +61,8 @@ export const Input = (props: TextInputProps) => {
           color: theme.colors.dark[5],
         },
       }}
-      variant="filled"
-      size="lg"
+      variant={props.variant || 'filled'}
+      size={CONFIG.SIZE}
       {...props}
     />
   );
@@ -79,7 +86,7 @@ export const DateInput = (props: DateInputProps) => {
         },
       }}
       variant="filled"
-      size="lg"
+      size="md"
       {...props}
     />
   );
@@ -103,7 +110,7 @@ export const NumberInput = (props: NumberInputProps) => {
         },
       }}
       variant="filled"
-      size="lg"
+      size={CONFIG.SIZE}
       {...props}
     />
   );
@@ -127,7 +134,7 @@ export const Textarea = (props: TextareaProps) => {
         },
       }}
       variant="filled"
-      size="lg"
+      size={CONFIG.SIZE}
       {...props}
     />
   );

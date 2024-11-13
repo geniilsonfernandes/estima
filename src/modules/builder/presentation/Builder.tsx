@@ -3,6 +3,7 @@ import { Box, Button, Flex, Modal, RingProgress, Text, Title } from '@mantine/co
 import { useDisclosure, useMediaQuery } from '@mantine/hooks';
 import { Preview } from '@/modules/builder/components/Preview/Preview';
 import { NavbarMinimal } from '@/shared/components/NavbarLink/NavbarLink';
+import { PaginationControl } from '@/shared/components/PaginationControl/PaginationControl';
 import { FormBuilder } from '../components/FormBuilder/FormBuilder';
 import { TemplateSelect } from '../components/TemplateSelect/TemplateSelect';
 
@@ -42,9 +43,6 @@ export const Builder = () => {
           bg="white"
           p="md"
           pb="md"
-          style={{
-            zIndex: 100,
-          }}
         >
           <span>
             <Text c="dark.2" fz="xs">
@@ -63,6 +61,7 @@ export const Builder = () => {
       {matches && (
         <Flex h="100vh" px="lg" py="lg" flex={1} pos="sticky" top="0" direction="column">
           <Preview />
+          <PaginationControl />
         </Flex>
       )}
       <Modal opened={opened} onClose={close} centered fullScreen>

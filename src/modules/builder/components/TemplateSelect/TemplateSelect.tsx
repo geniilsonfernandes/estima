@@ -1,9 +1,9 @@
 import { IconSparkles, IconStack2Filled } from '@tabler/icons-react';
 import { Modal, ScrollArea, Stack } from '@mantine/core';
 import { useTemplateStore } from '../../store';
-import { TemplateSelectContent } from './TemplateSelectContent';
-import { TemplateSelectFooter } from './TemplateSelectFooter';
-import { TemplateSelectHeader } from './TemplateSelectHeader';
+import { TemplateSelectContent } from '../TemplateSelectContent';
+import { TemplateSelectFooter } from '../TemplateSelectFooter';
+import { TemplateSelectHeader } from '../TemplateSelectHeader';
 
 export const TemplateSelect = () => {
   const { opened, openModal, setTemplate, template } = useTemplateStore((state) => state);

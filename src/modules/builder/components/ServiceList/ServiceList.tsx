@@ -32,12 +32,14 @@ export function ServiceList() {
       }
     >
       <Droppable droppableId="dnd-list" direction="vertical">
-        {(provided) => (
-          <div {...provided.droppableProps} ref={provided.innerRef}>
-            {items}
-            {provided.placeholder}
-          </div>
-        )}
+        {(provided) => {
+          return (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {items}
+              {provided.placeholder}
+            </div>
+          );
+        }}
       </Droppable>
       <Button
         onClick={() => addService({ id: randomId(), name: '', quantity: 0, price: 0 })}

@@ -1,17 +1,18 @@
-import { PDFViewer } from '@react-pdf/renderer';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { builderRouter } from './modules/builder/router';
+import { siteRoutes } from './modules/site/routes';
 import VladTamplate from './shared/templates/Vlad.tamplate';
 
 const router = createBrowserRouter([
-  builderRouter,
+  {
+    path: 'app',
+    children: [builderRouter],
+  },
+  ...siteRoutes,
   {
     path: '/template',
-    element: (
-      <PDFViewer showToolbar>
-        <VladTamplate title="Estimou" />
-      </PDFViewer>
-    ),
+    // element: <VladTamplate title="Estimou" />,
+    element: <VladTamplate />,
   },
 ]);
 

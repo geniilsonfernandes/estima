@@ -1,0 +1,22 @@
+/* 
+style={{
+        borderRadius: '8px',
+        height: '100%', // ocupa toda a altura disponível do contêiner pai
+        maxHeight: '1123px', // altura máxima de uma folha A4
+        aspectRatio: '794 / 1123', // mantém a proporção da folha A4
+        width: 'auto', // ajusta a largura automaticamente baseado na altura
+        padding: '16px', // padding opcional para criar espaço interno
+      }} */
+
+
+.wrapper {
+    border-radius: 8px;
+    height: 100%;
+    border: 1px solid var(--mantine-color-gray-2);
+    aspect-ratio: 794 / 1123; /* Mantém a proporção de uma folha A4 */
+    max-width: auto;    /* Ajusta a largura automática baseado na altura */
+    max-height: 1123px;  /* Altura máxima de uma folha A4 */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}

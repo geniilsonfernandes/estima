@@ -1,18 +1,14 @@
-import { Box, Center } from '@mantine/core';
-import { A4_Size } from '@/shared/constant/constants';
+import { Center } from '@mantine/core';
+import VladTamplate from '@/shared/templates/Vlad.tamplate';
+import classes from './TemplatePreview.module.css';
 
 type TemplatePreviewProps = {
   label: string;
 };
 export const TemplatePreview = ({ label }: TemplatePreviewProps) => {
   return (
-    <Center
-      w={A4_Size.width / 1.2}
-      h={A4_Size.height / 1.2}
-      bg="white"
-      style={{ borderRadius: '8px' }}
-    >
-      <Box>{label}</Box>
+    <Center bg="white" className={classes.wrapper}>
+      <VladTamplate title={label} products={[]} />
     </Center>
   );
 };

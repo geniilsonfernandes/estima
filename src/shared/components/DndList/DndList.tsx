@@ -44,7 +44,7 @@ export function DndList() {
         {(provided) => (
           <div {...provided.droppableProps} ref={provided.innerRef}>
             {items}
-            {provided.placeholder}
+            ....
           </div>
         )}
       </Droppable>
