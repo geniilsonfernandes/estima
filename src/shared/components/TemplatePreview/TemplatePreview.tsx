@@ -8,7 +8,7 @@ type TemplatePreviewProps = {
 export const TemplatePreview = ({ label }: TemplatePreviewProps) => {
   return (
     <Center bg="white" className={classes.wrapper}>
-      <VladTamplate title={label} products={[]} />
+      <VladTamplate title={label} />
     </Center>
   );
 };

@@ -6,7 +6,7 @@ import { TemplateSelectFooter } from '../TemplateSelectFooter';
 import { TemplateSelectHeader } from '../TemplateSelectHeader';
 
 export const TemplateSelect = () => {
-  const { opened, openModal, setTemplate, template } = useTemplateStore((state) => state);
+  const { opened, openModal } = useTemplateStore((state) => state);
 
   return (
     <Modal

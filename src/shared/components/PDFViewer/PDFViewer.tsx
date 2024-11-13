@@ -21,8 +21,7 @@ type PDFViewerProps = {
 };
 
 export const PDFViewer = ({ template, onUrlChange, onRenderError }: PDFViewerProps) => {
-  const [numPages, setNumPages] = useState<number | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage] = useState(1);
   const [previousRenderValue, setPreviousRenderValue] = useState<string | null>(null);
 
   const render = useAsync(async () => {

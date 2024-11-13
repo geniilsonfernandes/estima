@@ -18,7 +18,7 @@ export const SubscribeInput = (props: SubscribeInputProps) => {
       setSuccess(true);
       setEmail(''); // Limpa o campo após o sucesso
     } catch (error) {
-      console.error('Erro ao inscrever e-mail:', error);
+      setSuccess(false);
     } finally {
       setLoading(false);
     }

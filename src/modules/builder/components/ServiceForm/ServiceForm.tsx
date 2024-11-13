@@ -5,7 +5,7 @@ import { IService, useBuilderStore } from '../../store';
 type ServiceFormProps = { index: number } & IService;
 
 export const ServiceForm = ({ index }: ServiceFormProps) => {
-  const { updateService, services } = useBuilderStore((state) => state);
+  const { updateService } = useBuilderStore((state) => state);
 
   return (
     <Grid w="100%" columns={12} aria-label={`item-${index}`}>
