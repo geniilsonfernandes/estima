@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Text, Title } from '@mantine/core';
+import { Badge, Box, Container, Stack, Text, Title } from '@mantine/core';
 import noise from '@/shared/resource/noise.webp';
 import { Lines } from '../Lines';
 import { Menu } from '../Menu/Menu';
@@ -43,6 +43,9 @@ export const Header = () => {
           mx="auto"
           h={600}
         >
+          <Badge variant="outline" color="estimou" size="lg">
+            Em desenvolvimento
+          </Badge>
           <Title c="white" fz="h2" lh="1.2" maw="90%">
             Diga adeus aos orçamentos via WhatsApp e PDFs! Envie um link personalizado e
             profissional para o seu cliente.
