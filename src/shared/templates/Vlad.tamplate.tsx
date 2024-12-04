@@ -1,5 +1,5 @@
 import { Box, Flex } from '@mantine/core';
-import { Logo } from '../components/Logo/Logo';
+import { Logo } from '@/shared/components/Logo';
 
 type TemplateProps = {
   title: string;

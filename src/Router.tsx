@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { InvoicesPage } from './modules/invoices/views/invoices.page';
 import { siteRoutes } from './modules/site/routes';
-import AppWrapper from './shared/components/AppWrapper/AppWrapper';
+import { AppWrapper } from './shared/components/AppWrapper';
 import VladTamplate from './shared/templates/Vlad.tamplate';
+
 
 const router = createBrowserRouter(
   [

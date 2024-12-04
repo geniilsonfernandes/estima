@@ -1,6 +1,6 @@
 import { IconBell, IconMenu3 } from '@tabler/icons-react';
 import { ActionIcon, Box, Flex, Group, Title } from '@mantine/core';
-import { UserButton } from '../UserButton/UserButton';
+import { UserButton } from '../UserButton';
 
 type AppHeaderProps = {
   onOpenMenu: () => void;

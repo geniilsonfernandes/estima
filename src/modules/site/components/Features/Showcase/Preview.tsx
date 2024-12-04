@@ -13,7 +13,7 @@ import {
   Title,
   useMantineTheme,
 } from '@mantine/core';
-import { Logo } from '@/shared/components/Logo/Logo';
+import { Logo } from '@/shared/components/Logo';
 import classes from './Showcase.module.css';
 
 const orcamentos = [

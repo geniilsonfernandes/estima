@@ -117,6 +117,7 @@ export const InvoicesPageHeader = ({
           value={querySearch}
           onChange={handlequerySearch}
         />
+
         {!matches && (
           <Button.Group arial-label="List type">
             <Button

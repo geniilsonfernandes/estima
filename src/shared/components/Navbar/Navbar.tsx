@@ -10,7 +10,7 @@ import {
 } from '@tabler/icons-react';
 import { NavLink } from 'react-router-dom';
 import { Group } from '@mantine/core';
-import { Logo } from '../Logo/Logo';
+import { Logo } from '@/shared/components/Logo';
 import classes from './NavbarSimple.module.css';
 
 const data = [

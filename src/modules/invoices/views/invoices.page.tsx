@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Box, Flex, Grid } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import { InvoiceCard } from '@/shared/components/InvoiceCard/InvoiceCard';
+import { InvoiceCard } from '@/shared/components/InvoiceCard';
 import { InvoicesPageHeader } from '@/shared/components/InvoicesPageHeader';
 import { Pagination } from '@/shared/components/Pagination/Pagination';
 import { DataTable } from '@/shared/components/Table/DataTable';

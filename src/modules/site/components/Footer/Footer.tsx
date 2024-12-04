@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Container, Divider, Grid, Stack, Text, Title } from '@mantine/core';
-import { Logo } from '../../../../shared/components/Logo/Logo';
+import { Logo } from '@/shared/components/Logo';
 import { SubscribeInput } from '../SubscribeInput';
 
 export default function Footer() {

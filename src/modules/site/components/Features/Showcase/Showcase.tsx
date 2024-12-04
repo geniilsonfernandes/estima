@@ -1,5 +1,5 @@
 import { Box, Flex, Stack } from '@mantine/core';
-import { Logo } from '@/shared/components/Logo/Logo';
+import { Logo } from '@/shared/components/Logo';
 import { FormShowcase } from './FormShowcase';
 import { FormTitle } from './FormTitle';
 import { Preview } from './Preview';

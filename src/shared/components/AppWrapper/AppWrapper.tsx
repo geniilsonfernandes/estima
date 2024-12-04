@@ -2,14 +2,14 @@ import { Box, Drawer, Flex, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { AppHeader } from '../AppHeader';
 import { Navbar } from '../Navbar/Navbar';
-import { TapBar } from '../TapBar/TapBar';
+import { TapBar } from '../TapBar';
 
 type AppWrapperProps = {
   children: React.ReactNode;
   pageTitle?: string;
 };
 
-const AppWrapper: React.FC<AppWrapperProps> = ({ children, pageTitle }) => {
+export const AppWrapper: React.FC<AppWrapperProps> = ({ children, pageTitle }) => {
   const [opened, { open, close }] = useDisclosure(false);
   const sidebarWidth = 300;
 
@@ -73,5 +73,3 @@ const AppWrapper: React.FC<AppWrapperProps> = ({ children, pageTitle }) => {
     </Flex>
   );
 };
-
-export default AppWrapper;
