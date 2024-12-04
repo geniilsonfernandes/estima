@@ -1,0 +1,32 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--mantine-spacing-sm);
+    
+}
+
+
+.title {
+  font-family:
+    Greycliff CF,
+    var(--mantine-font-family);
+  line-height: 1;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--mantine-spacing-md);
+  padding: var(--mantine-spacing-sm);
+}
+
+.section {
+  padding: var(--mantine-spacing-sm);
+
+}
+
+.icon {
+  color: var(--mantine-color-dimmed);
+}
+

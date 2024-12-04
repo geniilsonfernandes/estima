@@ -1,16 +1,8 @@
-import {
-  IconBrandBehance,
-  IconBrandInstagram,
-  IconBrandLinkedin,
-  IconBrandTwitter,
-  IconCurrencyDollar,
-} from '@tabler/icons-react';
-import { Flex, Grid, Stack } from '@mantine/core';
+import { IconCurrencyDollar } from '@tabler/icons-react';
+import { Box, Grid } from '@mantine/core';
 import { CardForm } from '@/shared/components/CardForm';
-import { CollapseStack } from '@/shared/components/CollapseStack';
 import { ImageCheckbox } from '@/shared/components/ImageCheckbox/ImageCheckbox';
 import { DateInput, Input, InputMask, Textarea } from '@/shared/components/Input';
-import { LogoUpload } from '@/shared/components/LogoUpload/LogoUpload';
 import { useBuilderStore } from '../../store';
 import { ServiceList } from '../ServiceList/ServiceList';
 
@@ -18,8 +10,8 @@ export const FormBuilder = () => {
   const { updateCompany, updateCustomer } = useBuilderStore((state) => state);
 
   return (
-    <Stack px="lg" align="stretch">
-      <CardForm
+    <Box>
+      {/* <CardForm
         label="Dados da empresa"
         helpText="Especifique os dados empresa ou de você mesmo. Use o campo de detalhes para especificar seu endereço."
       >
@@ -87,7 +79,7 @@ export const FormBuilder = () => {
             </Grid.Col>
           </Grid>
         </CollapseStack>
-      </CardForm>
+      </CardForm> */}
       <CardForm
         label="Dados da cliente"
         helpText="Especifique o nome do seu cliente. Use os campos para especificar as informações de contato do cliente."
@@ -205,6 +197,6 @@ export const FormBuilder = () => {
           </Grid.Col>
         </Grid>
       </CardForm>
-    </Stack>
+    </Box>
   );
 };
