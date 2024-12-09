@@ -15,7 +15,7 @@ import classes from './NavbarSimple.module.css';
 
 const data = [
   { link: '/invoices', label: 'Orçamentos', icon: IconListDetails },
-  { link: '/clientes', label: 'Clientes', icon: IconUsers },
+  { link: '/clients', label: 'Clientes', icon: IconUsers },
   { link: '/work', label: 'Serviços', icon: IconTools },
   { link: '/companie', label: 'Minha Empresa', icon: IconBuilding },
   { link: '/statistics', label: 'Estatísticas', icon: IconChartBar },

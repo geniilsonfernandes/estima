@@ -1,15 +1,11 @@
+import { Outlet } from 'react-router-dom';
 import { Box, Drawer, Flex, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { AppHeader } from '../AppHeader';
 import { Navbar } from '../Navbar/Navbar';
 import { TapBar } from '../TapBar';
 
-type AppWrapperProps = {
-  children: React.ReactNode;
-  pageTitle?: string;
-};
-
-export const AppWrapper: React.FC<AppWrapperProps> = ({ children, pageTitle }) => {
+export const AppWrapper = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const sidebarWidth = 300;
 
@@ -34,9 +30,9 @@ export const AppWrapper: React.FC<AppWrapperProps> = ({ children, pageTitle }) =
 
       {/* Main Content */}
       <Stack gap="md" flex={1} p="md" mih="100vh" ml={{ lg: sidebarWidth }}>
-        <AppHeader onOpenMenu={open} title={pageTitle || 'Estimou'} />
-        <Box flex="1" pb={{ base: 70, md: 0 }}>
-          {children}
+        <AppHeader onOpenMenu={open} />
+        <Box flex="1" pt="md" pb={{ base: 70, md: 0 }}>
+          <Outlet />
         </Box>
       </Stack>
 
