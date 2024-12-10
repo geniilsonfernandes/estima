@@ -1,6 +1,7 @@
 import { IconTrash } from '@tabler/icons-react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Button, Divider, Flex, Grid, rem, Stack, Textarea, TextInput, Title } from '@mantine/core';
+import { supabase } from '@/shared/services/supabase';
 
 // mock.ts
 
@@ -91,6 +92,27 @@ export const CreateClientPage = () => {
   const pageTitle = id ? 'Editar Cliente' : 'Criar Cliente';
   const isEditing = Boolean(id);
 
+  const create = async () => {
+    try {
+      await supabase.from('Clients').insert({
+        address: {
+          cep: '12345-678',
+          street: 'Rua das Flores',
+          number: '123',
+          neighborhood: 'Centro',
+          city: 'São Paulo',
+          state: 'SP',
+        },
+        email: 'joao.silva@email.com',
+        name: 'João Silva',
+        phone: '11999999999',
+        birth_date: '1990-01-01',
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <Flex justify="space-between" direction={{ base: 'column', md: 'row' }} gap="md">
@@ -105,7 +127,9 @@ export const CreateClientPage = () => {
           <Button variant="outline" onClick={handleGoBack}>
             Cancelar
           </Button>
-          <Button>Salvar</Button>
+          <Button variant="filled" onClick={isEditing ? () => console.log('update') : create}>
+            Salvar
+          </Button>
         </Flex>
       </Flex>
 

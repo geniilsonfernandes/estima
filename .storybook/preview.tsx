@@ -1,26 +1,32 @@
 import '@mantine/core/styles.css';
 
-import React, { useEffect } from 'react';
-import { addons } from '@storybook/preview-api';
-import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
-import { MantineProvider, useMantineColorScheme } from '@mantine/core';
+import React from 'react';
+import { MantineProvider } from '@mantine/core';
 import { theme } from '../src/theme';
 
-const channel = addons.getChannel();
+// const channel = addons.getChannel();
 
-function ColorSchemeWrapper({ children }: { children: React.ReactNode }) {
-  const { setColorScheme } = useMantineColorScheme();
-  const handleColorScheme = (value: boolean) => setColorScheme(value ? 'dark' : 'light');
+// function ColorSchemeWrapper({ children }: { children: React.ReactNode }) {
+//   const { setColorScheme } = useMantineColorScheme();
 
-  useEffect(() => {
-    channel.on(DARK_MODE_EVENT_NAME, handleColorScheme);
-    return () => channel.off(DARK_MODE_EVENT_NAME, handleColorScheme);
-  }, [channel]);
+//   const [isDark, setDark] = useState(false);
 
-  return children;
-}
+//   useEffect(() => {
+//     // listen to DARK_MODE event
+//     channel.on(DARK_MODE_EVENT_NAME, setDark);
+//     return () => channel.off(DARK_MODE_EVENT_NAME, setDark);
+//   }, [channel, setDark]);
+
+//   useEffect(() => {
+//     console.log(isDark);
+
+//     setColorScheme(isDark ? 'light' : 'dark');
+//   }, [isDark]);
+
+//   return children;
+// }
 
 export const decorators = [
-  (renderStory: any) => <ColorSchemeWrapper>{renderStory()}</ColorSchemeWrapper>,
+  // (renderStory: any) => <ColorSchemeWrapper>{renderStory()}</ColorSchemeWrapper>,
   (renderStory: any) => <MantineProvider theme={theme}>{renderStory()}</MantineProvider>,
 ];

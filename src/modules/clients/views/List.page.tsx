@@ -1,22 +1,41 @@
+;
 // TODO : CRIAR UMA HEADER QUE DA PARA USAR EM TODAS AS PAGINAS
 // posso criar em formado de compound components e ser o primeiro componente do storybook
 
 import { useState } from 'react';
 import { IconPlus, IconSearch } from '@tabler/icons-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Flex, rem, Stack, TextInput } from '@mantine/core';
+import { Button, Flex, rem, SimpleGrid, Stack, TextInput } from '@mantine/core';
 import { Pagination } from '@/shared/components/Pagination';
+import { Budget, BudgetsDrawer } from '../components/BudgetDrawer';
 import { ClientCard } from '../components/ClientCard';
 import { ClientDrawer } from '../components/ClientDrawer/ClientDrawer';
 import { FilterDrawer } from '../components/FilterDrawer';
 import { Client, mockClients } from './Client.page';
 
 export const ListClientPage = () => {
-  const [clientToView, setClientToView] = useState<Client>();
   const navigate = useNavigate();
+  const [clientDrawerData, setClientDrawerData] = useState<Client>();
+  const [budgetDrawerData, setBudgetDrawerData] = useState<Budget>();
+
+  const handleClientDrawerOpen = (client?: Client) => {
+    setClientDrawerData(client);
+  };
+
+  const handleBudgetDrawerOpen = (budget?: Budget) => {
+    setBudgetDrawerData(budget);
+  };
+
+  const handleClientDrawerClose = () => {
+    setClientDrawerData(undefined);
+  };
+
+  const handleBudgetDrawerClose = () => {
+    setBudgetDrawerData(undefined);
+  };
 
   return (
-    <div>
+    <>
       <Flex gap="xs" direction={{ base: 'column', md: 'row' }} mb="md" justify="space-between">
         <Flex gap="xs">
           <TextInput
@@ -41,15 +60,18 @@ export const ListClientPage = () => {
         </Button>
       </Flex>
 
-      <Stack gap="xs">
-        {mockClients.map((client) => (
-          <ClientCard
-            key={client.id}
-            {...client}
-            onView={() => setClientToView(client)}
-            onEdit={() => navigate(`/clients/edit/${client.id}`)}
-          />
-        ))}
+      <Stack gap="xs" justify="space-between" mih="calc(100vh - 180px)">
+        <SimpleGrid cols={1}>
+          {mockClients.map((client) => (
+            <ClientCard
+              key={client.id}
+              {...client}
+              onView={() => handleClientDrawerOpen(client)}
+              onEdit={() => navigate(`/clients/edit/${client.id}`)}
+              onViewBudgets={() => handleBudgetDrawerOpen({ id: client.id })}
+            />
+          ))}
+        </SimpleGrid>
         <Pagination
           info="1 de 5"
           hasNextPage
@@ -60,10 +82,16 @@ export const ListClientPage = () => {
       </Stack>
 
       <ClientDrawer
-        opened={!!clientToView}
-        close={() => setClientToView(undefined)}
-        data={clientToView}
+        opened={!!clientDrawerData}
+        onClose={() => handleClientDrawerClose()}
+        data={clientDrawerData}
       />
-    </div>
+
+      <BudgetsDrawer
+        opened={!!budgetDrawerData}
+        onClose={handleBudgetDrawerClose}
+        data={clientDrawerData}
+      />
+    </>
   );
 };

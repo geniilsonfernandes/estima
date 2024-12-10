@@ -29,7 +29,7 @@ type ClientCardProps = {
   onView?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
-  onInvoices?: () => void;
+  onViewBudgets?: () => void;
 } & Client;
 
 export const ClientCard = ({
@@ -38,6 +38,7 @@ export const ClientCard = ({
   onView,
   onEdit,
   onDelete,
+  onViewBudgets,
 }: ClientCardProps) => {
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -88,6 +89,7 @@ export const ClientCard = ({
             size="xs"
             w={{ base: '100%', md: 'auto' }}
             variant="light"
+            onClick={onViewBudgets}
             leftSection={<IconEye style={{ width: rem(16) }} stroke={1.5} />}
           >
             Orçamentos

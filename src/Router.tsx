@@ -5,6 +5,7 @@ import { InvoicesPage } from './modules/invoices/views/invoices.page';
 import { siteRoutes } from './modules/site/routes';
 import { AppWrapper } from './shared/components/AppWrapper';
 
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
             element: <CreateClientPage />,
           },
         ],
+      },
+      {
+        path: '/changelog',
+        element: <div>changelog</div>,
+        // TODO: create changelog in mdx
       },
       {
         path: '/invoices',

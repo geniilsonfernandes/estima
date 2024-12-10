@@ -1,12 +1,33 @@
 import { IconCalendar, IconEdit, IconEye } from '@tabler/icons-react';
-import { Badge, Button, Card, Divider, Flex, Progress, rem, SimpleGrid, Text } from '@mantine/core';
+import {
+  Badge,
+  Button,
+  Card,
+  Divider,
+  Flex,
+  Group,
+  Progress,
+  rem,
+  SimpleGrid,
+  Text,
+} from '@mantine/core';
 import { Budget } from '@/shared/models';
 import { DisplayValue } from '../DisplayValue';
 import classes from './InvoiceCard.module.css';
 
-type InvoiceCardProps = Budget;
+export type InvoiceCardProps = {
+  variant?: 'compact' | 'detailed';
+  onView?: () => void;
+  onDetails?: () => void;
+  data?: Budget;
+};
 
-export const InvoiceCard = ({ client, id, status, value, validity, date }: InvoiceCardProps) => {
+export const InvoiceCard = ({
+  data: { id, status, total, client, dueDate, date } = {},
+  variant = 'detailed',
+  onView,
+  onDetails,
+}: InvoiceCardProps) => {
   const statusColor = {
     draft: 'yellow',
     pending: 'orange',
@@ -15,12 +36,65 @@ export const InvoiceCard = ({ client, id, status, value, validity, date }: Invoi
     cancelled: 'red',
   };
 
+  const buttons = () => {
+    return (
+      <Card.Section p="sm">
+        <Divider mb="sm" />
+        <Flex gap="xs" w="100%">
+          <Button
+            variant="light"
+            size="xs"
+            fullWidth
+            leftSection={<IconEye size={18} />}
+            onClick={onView}
+          >
+            Preview
+          </Button>
+          <Button
+            variant="outline"
+            size="xs"
+            fullWidth
+            leftSection={<IconEdit size={18} />}
+            onClick={onDetails}
+          >
+            Detalhes
+          </Button>
+        </Flex>
+      </Card.Section>
+    );
+  };
+
+  if (variant === 'compact') {
+    return (
+      <Card shadow="md" radius="md" aria-label={` Orcamento ${id}`}>
+        <Group justify="space-between">
+          <DisplayValue
+            title="status:"
+            value={
+              <Badge variant="outline" size="sm" color={statusColor[status || 'draft']}>
+                {status}
+              </Badge>
+            }
+          />
+          <DisplayValue title="Data:" value={date} />
+          <DisplayValue title="valor:" value={total} />
+        </Group>
+        {buttons()}
+      </Card>
+    );
+  }
+
   return (
     <Card shadow="md" radius="md" aria-label={` Orcamento ${id}`}>
       <Card.Section px="sm" className={classes.header}>
-        <Badge variant="outline" size="sm" color={statusColor[status]}>
-          {status}
-        </Badge>
+        <DisplayValue
+          title="status:"
+          value={
+            <Badge variant="outline" size="sm" color={statusColor[status || 'draft']}>
+              {status}
+            </Badge>
+          }
+        />
 
         <Text size="xs" tt="capitalize" c="dimmed">
           {id}
@@ -29,7 +103,7 @@ export const InvoiceCard = ({ client, id, status, value, validity, date }: Invoi
       <Card.Section px="sm">
         <SimpleGrid cols={2}>
           <DisplayValue title="Cliente:" value={client} />
-          <DisplayValue title="Valor:" value={value} />
+          <DisplayValue title="Valor:" value={total} />
         </SimpleGrid>
 
         <Flex gap="xs" mt="sm" c="dimmed" align="center" justify="space-between">
@@ -40,23 +114,12 @@ export const InvoiceCard = ({ client, id, status, value, validity, date }: Invoi
             </Text>
           </Flex>
           <Text size="xs" tt="capitalize">
-            {validity}
+            {dueDate}
           </Text>
         </Flex>
         <Progress mt="xs" size="xs" value={50} />
       </Card.Section>
-
-      <Card.Section p="sm">
-        <Divider mb="sm" />
-        <Flex gap="xs" w="100%">
-          <Button variant="light" size="xs" fullWidth leftSection={<IconEye size={18} />}>
-            Preview
-          </Button>
-          <Button variant="outline" size="xs" fullWidth leftSection={<IconEdit size={18} />}>
-            Detalhes
-          </Button>
-        </Flex>
-      </Card.Section>
+      {buttons()}
     </Card>
   );
 };

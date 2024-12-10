@@ -45,7 +45,7 @@ const useBudgets = ({ filter, pageSize = 10 }: useBudgetsProps = {}) => {
           }
 
           if (filter?.client) {
-            return budget.client.toLowerCase().includes(filter.client.toLowerCase());
+            return budget.client?.toLowerCase().includes(filter.client.toLowerCase());
           }
 
           // Filtro por período

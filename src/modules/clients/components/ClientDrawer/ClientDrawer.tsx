@@ -5,8 +5,7 @@ import {
   Button,
   Divider,
   Drawer,
-  Group,
-  Progress,
+  DrawerProps,
   rem,
   SimpleGrid,
   Stack,
@@ -15,10 +14,8 @@ import {
 import { Client } from '../../views/Client.page';
 
 type ClientDrawerProps = {
-  opened: boolean;
-  close: () => void;
   data?: Client;
-};
+} & DrawerProps;
 
 const DisplayValue = ({ label, value = '-' }: { label: string; value?: string | number }) => {
   return (
@@ -33,42 +30,11 @@ const DisplayValue = ({ label, value = '-' }: { label: string; value?: string | 
   );
 };
 
-const invoices = [
-  { label: 'fechados', count: '10', part: 59, color: '#47d6ab' },
-  { label: 'abertos', count: '29', part: 35, color: '#03141a' },
-  { label: 'vencidos', count: '1', part: 6, color: '#ff0000' },
-];
-
-export const ClientDrawer = ({ opened, close, data }: ClientDrawerProps) => {
+export const ClientDrawer = ({ data, ...props }: ClientDrawerProps) => {
   const navigate = useNavigate();
 
-  const segments = invoices.map((segment) => (
-    <Progress.Section value={segment.part} color={segment.color} key={segment.color}>
-      {segment.part > 10 && (
-        <Progress.Label styles={{ label: { fontSize: rem(12) } }}>{segment.part}%</Progress.Label>
-      )}
-    </Progress.Section>
-  ));
-
-  const descriptions = invoices.map((stat) => (
-    <Box key={stat.label} style={{ borderBottomColor: stat.color }}>
-      <Text tt="uppercase" fz="xs" c="dimmed" fw={600}>
-        {stat.label}
-      </Text>
-
-      <Group justify="space-between" align="center" gap={0}>
-        <Text fw={700} fz="md">
-          {stat.count}
-        </Text>
-        <Text c={stat.color} fw={700} fz="xs">
-          {stat.part}%
-        </Text>
-      </Group>
-    </Box>
-  ));
-
   return (
-    <Drawer.Root opened={opened} onClose={close} offset={8} radius="md">
+    <Drawer.Root offset={8} radius="md" {...props}>
       <Drawer.Overlay />
       <Drawer.Content>
         <Drawer.Header>
@@ -104,12 +70,6 @@ export const ClientDrawer = ({ opened, close, data }: ClientDrawerProps) => {
               Editar
             </Button>
           </Button.Group>
-          <Divider label="Orçamentos" labelPosition="left" />
-          <Progress.Root size={34} my="md">
-            {segments}
-          </Progress.Root>
-          <SimpleGrid cols={{ base: 1, xs: 3 }}>{descriptions}</SimpleGrid>
-
           <Stack gap="xs">
             <Divider my="xs" label="Informações da básicas" labelPosition="left" />
             <SimpleGrid cols={{ base: 1, xs: 2 }}>
