@@ -6,7 +6,7 @@ import { Showcase } from '@/modules/site/components/Features/Showcase/Showcase';
 import Footer from '@/modules/site/components/Footer/Footer';
 import { Header } from '@/modules/site/components/Header/Header';
 
-export const Site = () => {
+export const SitePage = () => {
   return (
     <>
       <Header />

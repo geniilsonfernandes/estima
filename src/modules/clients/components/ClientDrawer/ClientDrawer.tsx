@@ -1,5 +1,5 @@
 import { IconEdit, IconEye } from '@tabler/icons-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import {
   Box,
   Button,
@@ -64,7 +64,7 @@ export const ClientDrawer = ({ data, ...props }: ClientDrawerProps) => {
               size="xs"
               variant="outline"
               fullWidth
-              onClick={() => navigate(`/clients/edit/${data?.id}`)}
+              onClick={() => navigate(`edit/${data?.id}`)}
               leftSection={<IconEdit style={{ width: rem(16) }} stroke={1.5} />}
             >
               Editar

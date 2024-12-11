@@ -1,6 +1,6 @@
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { IconBell, IconChevronRight, IconMenu3 } from '@tabler/icons-react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { ActionIcon, Badge, Flex, Group, Text, useMantineTheme } from '@mantine/core';
 
 type AppHeaderProps = {
@@ -32,7 +32,7 @@ export const AppHeader = ({ onOpenMenu }: AppHeaderProps) => {
         </ActionIcon>
         <Group gap="xs">
           {filterLocation.map((item, index) => (
-            <>
+            <React.Fragment key={item}>
               {index !== 0 && (
                 <IconChevronRight stroke={2} width={16} color={theme.colors.dark[1]} />
               )}
@@ -45,7 +45,7 @@ export const AppHeader = ({ onOpenMenu }: AppHeaderProps) => {
                   {item}
                 </Text>
               )}
-            </>
+            </React.Fragment>
           ))}
         </Group>
       </Flex>

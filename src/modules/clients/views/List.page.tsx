@@ -1,10 +1,9 @@
-;
 // TODO : CRIAR UMA HEADER QUE DA PARA USAR EM TODAS AS PAGINAS
 // posso criar em formado de compound components e ser o primeiro componente do storybook
 
 import { useState } from 'react';
 import { IconPlus, IconSearch } from '@tabler/icons-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate, useNavigation } from 'react-router';
 import { Button, Flex, rem, SimpleGrid, Stack, TextInput } from '@mantine/core';
 import { Pagination } from '@/shared/components/Pagination';
 import { Budget, BudgetsDrawer } from '../components/BudgetDrawer';
@@ -14,6 +13,8 @@ import { FilterDrawer } from '../components/FilterDrawer';
 import { Client, mockClients } from './Client.page';
 
 export const ListClientPage = () => {
+  const loader = useLoaderData();
+  const { state } = useNavigation();
   const navigate = useNavigate();
   const [clientDrawerData, setClientDrawerData] = useState<Client>();
   const [budgetDrawerData, setBudgetDrawerData] = useState<Budget>();
@@ -36,6 +37,9 @@ export const ListClientPage = () => {
 
   return (
     <>
+      {JSON.stringify(loader, null, 2)}
+      {state}
+
       <Flex gap="xs" direction={{ base: 'column', md: 'row' }} mb="md" justify="space-between">
         <Flex gap="xs">
           <TextInput
@@ -54,7 +58,7 @@ export const ListClientPage = () => {
           variant="filled"
           p="xs"
           component={Link}
-          to="/clients/create"
+          to="create"
         >
           Criar cliente
         </Button>
@@ -67,7 +71,7 @@ export const ListClientPage = () => {
               key={client.id}
               {...client}
               onView={() => handleClientDrawerOpen(client)}
-              onEdit={() => navigate(`/clients/edit/${client.id}`)}
+              onEdit={() => navigate(`edit/${client.id}`)}
               onViewBudgets={() => handleBudgetDrawerOpen({ id: client.id })}
             />
           ))}

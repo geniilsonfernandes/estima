@@ -3,7 +3,7 @@ import { Text } from '@mantine/core';
 
 type DisplayValueProps = {
   title: string;
-  value: string | number | null | React.ReactNode;
+  value?: string | number;
 };
 
 export const DisplayValue = ({ title, value }: DisplayValueProps) => {

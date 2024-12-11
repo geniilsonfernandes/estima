@@ -8,18 +8,18 @@ import {
   IconTools,
   IconUsers,
 } from '@tabler/icons-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 import { Group } from '@mantine/core';
 import { Logo } from '@/shared/components/Logo';
 import classes from './NavbarSimple.module.css';
 
 const data = [
-  { link: '/invoices', label: 'Orçamentos', icon: IconListDetails },
-  { link: '/clients', label: 'Clientes', icon: IconUsers },
-  { link: '/work', label: 'Serviços', icon: IconTools },
-  { link: '/companie', label: 'Minha Empresa', icon: IconBuilding },
-  { link: '/statistics', label: 'Estatísticas', icon: IconChartBar },
-  { link: '/settings', label: 'Configurações', icon: IconSettings },
+  { link: 'budgets', label: 'Orçamentos', icon: IconListDetails },
+  { link: 'clients', label: 'Clientes', icon: IconUsers },
+  { link: 'work', label: 'Serviços', icon: IconTools },
+  { link: 'companie', label: 'Minha Empresa', icon: IconBuilding },
+  { link: 'statistics', label: 'Estatísticas', icon: IconChartBar },
+  { link: 'settings', label: 'Configurações', icon: IconSettings },
 ];
 
 export function Navbar() {

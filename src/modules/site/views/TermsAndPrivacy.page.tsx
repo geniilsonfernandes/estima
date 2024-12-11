@@ -1,7 +1,7 @@
 import { Container, Stack, Text, Title } from '@mantine/core';
 import { Menu } from '../components/Menu/Menu';
 
-export const TermsAndPrivacy = () => {
+export const TermsAndPrivacyPage = () => {
   return (
     <Container size="sm" py="lg">
       <Menu />

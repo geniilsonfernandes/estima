@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigation } from 'react-router';
 import { Box, Drawer, Flex, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { AppHeader } from '../AppHeader';
@@ -6,6 +6,7 @@ import { Navbar } from '../Navbar/Navbar';
 import { TapBar } from '../TapBar';
 
 export const AppWrapper = () => {
+  const navigation = useNavigation();
   const [opened, { open, close }] = useDisclosure(false);
   const sidebarWidth = 300;
 
@@ -31,7 +32,12 @@ export const AppWrapper = () => {
       {/* Main Content */}
       <Stack gap="md" flex={1} p="md" mih="100vh" ml={{ lg: sidebarWidth }}>
         <AppHeader onOpenMenu={open} />
-        <Box flex="1" pt="md" pb={{ base: 70, md: 0 }}>
+        <Box
+          flex="1"
+          pt="md"
+          pb={{ base: 70, md: 0 }}
+          opacity={navigation.state === 'loading' ? 0.5 : 1}
+        >
           <Outlet />
         </Box>
       </Stack>

@@ -68,14 +68,7 @@ export const InvoiceCard = ({
     return (
       <Card shadow="md" radius="md" aria-label={` Orcamento ${id}`}>
         <Group justify="space-between">
-          <DisplayValue
-            title="status:"
-            value={
-              <Badge variant="outline" size="sm" color={statusColor[status || 'draft']}>
-                {status}
-              </Badge>
-            }
-          />
+          <DisplayValue title="status:" value={status} />
           <DisplayValue title="Data:" value={date} />
           <DisplayValue title="valor:" value={total} />
         </Group>
@@ -87,14 +80,9 @@ export const InvoiceCard = ({
   return (
     <Card shadow="md" radius="md" aria-label={` Orcamento ${id}`}>
       <Card.Section px="sm" className={classes.header}>
-        <DisplayValue
-          title="status:"
-          value={
-            <Badge variant="outline" size="sm" color={statusColor[status || 'draft']}>
-              {status}
-            </Badge>
-          }
-        />
+        <Badge variant="outline" size="sm" color={statusColor[status || 'draft']}>
+          {status}
+        </Badge>
 
         <Text size="xs" tt="capitalize" c="dimmed">
           {id}

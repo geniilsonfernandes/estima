@@ -1,5 +1,5 @@
 import { IconTrash } from '@tabler/icons-react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router';
 import { Button, Divider, Flex, Grid, rem, Stack, Textarea, TextInput, Title } from '@mantine/core';
 import { supabase } from '@/shared/services/supabase';
 

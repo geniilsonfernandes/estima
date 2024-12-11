@@ -13,7 +13,7 @@ const MEDIA_QUERYS = {
   TABLET: '(max-width: 56.25em)',
 };
 
-export const InvoicesPage = () => {
+export const BudgetsPage = () => {
   const [filters, setFilters] = useState<{
     status: string | null;
     client: string | null;
@@ -51,7 +51,6 @@ export const InvoicesPage = () => {
 
   const invoice = {
     id: '1',
-
     client: 'João da Silva',
     status: 'active',
     total: 100,

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Container, Divider, Grid, Stack, Text, Title } from '@mantine/core';
 import { Logo } from '@/shared/components/Logo';
 import { SubscribeInput } from '../SubscribeInput';
