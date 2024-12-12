@@ -1,5 +1,4 @@
 import { Center } from '@mantine/core';
-import VladTamplate from '@/shared/templates/Vlad.tamplate';
 import classes from './TemplatePreview.module.css';
 
 type TemplatePreviewProps = {
@@ -8,7 +7,7 @@ type TemplatePreviewProps = {
 export const TemplatePreview = ({ label }: TemplatePreviewProps) => {
   return (
     <Center bg="white" className={classes.wrapper}>
-      <VladTamplate title={label} />
+      <span>{label}</span>
     </Center>
   );
 };

@@ -20,11 +20,11 @@ export function DataTable({ data }: DataTableProps) {
     <Table.Tr key={item.id}>
       <Table.Td>{item.id}</Table.Td>
       <Table.Td>{item.client}</Table.Td>
-      <Table.Td>{item.validity}</Table.Td>
+      <Table.Td>{item.dueDate}</Table.Td>
       <Table.Td>{item.date}</Table.Td>
-      <Table.Td>{item.value}</Table.Td>
+      <Table.Td>{item.total}</Table.Td>
       <Table.Td>
-        <Badge variant="light" color={statusColor[item.status]}>
+        <Badge variant="light" color={statusColor[item.status as keyof typeof statusColor]}>
           {item.status}
         </Badge>
       </Table.Td>
