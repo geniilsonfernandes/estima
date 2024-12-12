@@ -5,7 +5,7 @@ import {
   IconSettings,
   IconUsers,
 } from '@tabler/icons-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 import { ActionIcon, ActionIconVariant, Group, Paper } from '@mantine/core';
 
 const TapBarOptions = [
@@ -26,10 +26,10 @@ export function TapBar() {
     <Paper shadow="xs" radius="md" p="xs" bottom={0}>
       <Group justify="space-between">
         {TapBarOptions.map((item) => (
-          <NavLink to={item.link}>
+          <NavLink to={item.link} key={item.link}>
             {({ isActive }) => (
               <ActionIcon
-                key={item.label}
+                key={item.link}
                 size="lg"
                 c={item.color}
                 variant={isActive ? 'filled' : 'transparent'}

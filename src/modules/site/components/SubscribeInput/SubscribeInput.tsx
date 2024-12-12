@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { IconMail, IconRocket } from '@tabler/icons-react';
 import { Button, Input, Stack, StackProps } from '@mantine/core';
-import { addSubscriberEmail } from '../../services/subscribeService';
 
 type SubscribeInputProps = {} & StackProps;
 
@@ -14,7 +13,6 @@ export const SubscribeInput = (props: SubscribeInputProps) => {
   const handleSubscribe = async () => {
     setLoading(true);
     try {
-      await addSubscriberEmail(email);
       setSuccess(true);
       setEmail(''); // Limpa o campo após o sucesso
     } catch (error) {

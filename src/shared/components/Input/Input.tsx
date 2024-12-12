@@ -17,7 +17,7 @@ import { DateInputProps, DateInput as MantineDateInput } from '@mantine/dates';
 const CONFIG: {
   SIZE: MantineSize;
 } = {
-  SIZE: 'md',
+  SIZE: 'sm',
 };
 
 export const InputMask = (props: InputBaseProps & IMaskInputProps<HTMLInputElement>) => {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
   IconCalendar,
+  IconFilter,
   IconLayoutGrid,
   IconLayoutList,
   IconMenu4,
@@ -106,6 +107,14 @@ export const InvoicesPageHeader = ({
             </Stack>
           </Menu.Dropdown>
         </Menu>
+        <Button
+          size="sm"
+          variant={period[0] || period[1] ? 'outline' : 'default'}
+          c={period[0] || period[1] ? 'estimou' : 'dimmed'}
+          p="xs"
+        >
+          <IconFilter style={{ width: rem(18) }} stroke={1.5} />
+        </Button>
       </Group>
       <Flex gap="xs" align="flex-start">
         <TextInput

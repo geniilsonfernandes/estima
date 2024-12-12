@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { Flex } from '@mantine/core';
 import { Logo } from '@/shared/components/Logo/Logo';
 import routes from '@/shared/constant/routes';

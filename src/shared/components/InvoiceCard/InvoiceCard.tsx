@@ -1,17 +1,33 @@
-import { IconCalendar, IconDots, IconEdit, IconEye } from '@tabler/icons-react';
-import { ActionIcon, Badge, Button, Card, Flex, Group, Menu, Text } from '@mantine/core';
+import { IconCalendar, IconEdit, IconEye } from '@tabler/icons-react';
+import {
+  Badge,
+  Button,
+  Card,
+  Divider,
+  Flex,
+  Group,
+  Progress,
+  rem,
+  SimpleGrid,
+  Text,
+} from '@mantine/core';
 import { Budget } from '@/shared/models';
 import { DisplayValue } from '../DisplayValue';
 import classes from './InvoiceCard.module.css';
 
-type InvoiceCardProps = Budget;
+export type InvoiceCardProps = {
+  variant?: 'compact' | 'detailed';
+  onView?: () => void;
+  onDetails?: () => void;
+  data?: Budget;
+};
 
-export const InvoiceCard = ({ client, id, status, value, validity, date }: InvoiceCardProps) => {
-  const data = [
-    { title: 'validade', value: validity },
-    { title: 'total', value },
-  ];
-
+export const InvoiceCard = ({
+  data: { id, status, total, client, dueDate, date } = {},
+  variant = 'detailed',
+  onView,
+  onDetails,
+}: InvoiceCardProps) => {
   const statusColor = {
     draft: 'yellow',
     pending: 'orange',
@@ -20,51 +36,78 @@ export const InvoiceCard = ({ client, id, status, value, validity, date }: Invoi
     cancelled: 'red',
   };
 
-  const items = data.map((stat) => <DisplayValue key={stat.title} {...stat} />);
-
-  return (
-    <Card shadow="md" radius="md" aria-label={` Orcamento ${id}`}>
-      <Card.Section p="sm" className={classes.header}>
-        <Badge variant="outline" size="sm" color={statusColor[status]}>
-          {status}
-        </Badge>
-        <Menu withinPortal>
-          <Menu.Target>
-            <ActionIcon variant="subtle" color="gray">
-              <IconDots size={16} stroke={1.5} />
-            </ActionIcon>
-          </Menu.Target>
-          <Menu.Dropdown>
-            <Menu.Item leftSection={<IconEye size={16} stroke={1.5} />}>Preview</Menu.Item>
-            <Menu.Item leftSection={<IconEdit size={16} stroke={1.5} />}>Detalhes</Menu.Item>
-          </Menu.Dropdown>
-        </Menu>
-      </Card.Section>
-
-      <Card.Section px="sm">
-        <DisplayValue title="Cliente:" value={client} />
-
-        <Group gap="xs" mt="xs">
-          {items}
-        </Group>
-        <Flex gap="xs" mt="sm" c="dimmed" align="center">
-          <IconCalendar size={16} stroke={1.5} />
-          <Text size="xs" tt="capitalize">
-            {date}
-          </Text>
-        </Flex>
-      </Card.Section>
-
+  const buttons = () => {
+    return (
       <Card.Section p="sm">
-        <Flex gap="xs" align="start" justify="space-between">
-          <Button variant="light" size="xs" fullWidth leftSection={<IconEye size={18} />}>
+        <Divider mb="sm" />
+        <Flex gap="xs" w="100%">
+          <Button
+            variant="light"
+            size="xs"
+            fullWidth
+            leftSection={<IconEye size={18} />}
+            onClick={onView}
+          >
             Preview
           </Button>
-          <Button variant="outline" size="xs" fullWidth leftSection={<IconEdit size={18} />}>
+          <Button
+            variant="outline"
+            size="xs"
+            fullWidth
+            leftSection={<IconEdit size={18} />}
+            onClick={onDetails}
+          >
             Detalhes
           </Button>
         </Flex>
       </Card.Section>
+    );
+  };
+
+  if (variant === 'compact') {
+    return (
+      <Card shadow="md" radius="md" aria-label={` Orcamento ${id}`}>
+        <Group justify="space-between">
+          <DisplayValue title="status:" value={status} />
+          <DisplayValue title="Data:" value={date} />
+          <DisplayValue title="valor:" value={total} />
+        </Group>
+        {buttons()}
+      </Card>
+    );
+  }
+
+  return (
+    <Card shadow="md" radius="md" aria-label={` Orcamento ${id}`}>
+      <Card.Section px="sm" className={classes.header}>
+        <Badge variant="outline" size="sm" color={statusColor[status || 'draft']}>
+          {status}
+        </Badge>
+
+        <Text size="xs" tt="capitalize" c="dimmed">
+          {id}
+        </Text>
+      </Card.Section>
+      <Card.Section px="sm">
+        <SimpleGrid cols={2}>
+          <DisplayValue title="Cliente:" value={client} />
+          <DisplayValue title="Valor:" value={total} />
+        </SimpleGrid>
+
+        <Flex gap="xs" mt="sm" c="dimmed" align="center" justify="space-between">
+          <Flex gap="xs" c="dimmed" align="center">
+            <IconCalendar style={{ width: rem(16) }} stroke={1.5} />
+            <Text size="xs" tt="capitalize">
+              {date}
+            </Text>
+          </Flex>
+          <Text size="xs" tt="capitalize">
+            {dueDate}
+          </Text>
+        </Flex>
+        <Progress mt="xs" size="xs" value={50} />
+      </Card.Section>
+      {buttons()}
     </Card>
   );
 };

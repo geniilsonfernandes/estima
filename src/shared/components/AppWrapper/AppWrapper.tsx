@@ -1,20 +1,30 @@
+import { useEffect } from 'react';
+import { Outlet, useNavigation } from 'react-router';
 import { Box, Drawer, Flex, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { NavigationProgress, nprogress } from '@mantine/nprogress';
 import { AppHeader } from '../AppHeader';
 import { Navbar } from '../Navbar/Navbar';
 import { TapBar } from '../TapBar';
 
-type AppWrapperProps = {
-  children: React.ReactNode;
-  pageTitle?: string;
-};
-
-export const AppWrapper: React.FC<AppWrapperProps> = ({ children, pageTitle }) => {
+export const AppWrapper = () => {
+  const { state } = useNavigation();
   const [opened, { open, close }] = useDisclosure(false);
   const sidebarWidth = 300;
 
+  useEffect(() => {
+    if (state === 'loading') {
+      nprogress.start();
+    }
+
+    if (state === 'idle') {
+      nprogress.complete();
+    }
+  }, [state]);
+
   return (
     <Flex align="stretch" bg="gray.0" pos="relative">
+      <NavigationProgress />
       {/* Sidebar */}
       <Box
         display={{ base: 'none', lg: 'block' }}
@@ -34,9 +44,9 @@ export const AppWrapper: React.FC<AppWrapperProps> = ({ children, pageTitle }) =
 
       {/* Main Content */}
       <Stack gap="md" flex={1} p="md" mih="100vh" ml={{ lg: sidebarWidth }}>
-        <AppHeader onOpenMenu={open} title={pageTitle || 'Estimou'} />
-        <Box flex="1" pb={{ base: 70, md: 0 }}>
-          {children}
+        <AppHeader onOpenMenu={open} />
+        <Box flex="1" pt="md" pb={{ base: 70, md: 0 }} opacity={state === 'loading' ? 0.5 : 1}>
+          <Outlet />
         </Box>
       </Stack>
 

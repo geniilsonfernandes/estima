@@ -12,16 +12,13 @@
 
 .header {
   padding-bottom: var(--mantine-spacing-xl);
-  padding-top: var(--mantine-spacing-md);
-
-  margin-bottom: calc(var(--mantine-spacing-md) * 1.5);
-  border-bottom: 1px solid var(--mantine-color-gray-1);
+  padding-left: var(--mantine-spacing-md);
 }
 
 .footer {
   padding-top: var(--mantine-spacing-md);
   margin-top: var(--mantine-spacing-md);
-  border-top: 1px solid var(--mantine-color-gray-1);
+  border-top: 1px solid var(--mantine-color-estimou-1);
 }
 
 .link {
@@ -29,7 +26,7 @@
   align-items: center;
   text-decoration: none;
   font-size: var(--mantine-font-size-sm);
-  color: white;
+  color: var(--mantine-color-estimou-2);
   padding: var(--mantine-spacing-xs) var(--mantine-spacing-sm);
   border-radius: var(--mantine-radius-sm);
   font-weight: 500;
@@ -39,7 +36,7 @@
   &,
   &:hover {
     background-color: var(--mantine-color-estimou-light);
-    color: var(--mantine-color-estimou-light-color);
+    color: var(--mantine-color-estimou-2);
 
     .linkIcon {
       color: var(--mantine-color-estimou-light-color);
@@ -48,7 +45,7 @@
 }
 
 .linkIcon {
-  color: white;
+  color:var(--mantine-color-estimou-2);
   margin-right: var(--mantine-spacing-sm);
   width: 25px;
   height: 25px;

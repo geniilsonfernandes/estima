@@ -6,13 +6,14 @@ import { InvoicesPageHeader } from '@/shared/components/InvoicesPageHeader';
 import { Pagination } from '@/shared/components/Pagination/Pagination';
 import { DataTable } from '@/shared/components/Table/DataTable';
 import useBudgets from '@/shared/hooks/useBudgets';
+import { Budget } from '@/shared/models';
 
 const MEDIA_QUERYS = {
   MOBILE: '(max-width: 56.25em)',
   TABLET: '(max-width: 56.25em)',
 };
 
-export const InvoicesPage = () => {
+export const BudgetsPage = () => {
   const [filters, setFilters] = useState<{
     status: string | null;
     client: string | null;
@@ -48,6 +49,14 @@ export const InvoicesPage = () => {
     }
   }, [matches]);
 
+  const invoice = {
+    id: '1',
+    client: 'João da Silva',
+    status: 'active',
+    total: 100,
+    dueDate: '2023-01-01',
+  } as Budget;
+
   return (
     <Box pos="relative">
       <InvoicesPageHeader
@@ -72,11 +81,15 @@ export const InvoicesPage = () => {
                 }}
                 key={item.id}
               >
-                <InvoiceCard {...item} />
+                <InvoiceCard data={item} />
               </Grid.Col>
             ))}
           </Grid>
         )}
+
+        <InvoiceCard {...invoice} variant="compact" />
+        <InvoiceCard {...invoice} variant="detailed" />
+
         <Pagination
           info={paginationInfo}
           hasNextPage={hasNextPage}
