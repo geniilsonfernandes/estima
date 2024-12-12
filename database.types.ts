@@ -9,39 +9,57 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      Clients: {
+      clients: {
         Row: {
-          address: Json | null
-          birth_date: string | null
-          created_at: string | null
-          email: string | null
+          additionalInfo: string | null
+          cep: string | null
+          city: string | null
+          company: string | null
+          document: string | null
+          email: string
           id: string
           is_active: boolean | null
-          name: string | null
+          name: string
+          neighborhood: string | null
+          number: string | null
           phone: string | null
-          updated_at: string | null
+          site: string | null
+          state: string | null
+          street: string | null
         }
         Insert: {
-          address?: Json | null
-          birth_date?: string | null
-          created_at?: string | null
-          email?: string | null
+          additionalInfo?: string | null
+          cep?: string | null
+          city?: string | null
+          company?: string | null
+          document?: string | null
+          email: string
           id?: string
           is_active?: boolean | null
-          name?: string | null
+          name: string
+          neighborhood?: string | null
+          number?: string | null
           phone?: string | null
-          updated_at?: string | null
+          site?: string | null
+          state?: string | null
+          street?: string | null
         }
         Update: {
-          address?: Json | null
-          birth_date?: string | null
-          created_at?: string | null
-          email?: string | null
+          additionalInfo?: string | null
+          cep?: string | null
+          city?: string | null
+          company?: string | null
+          document?: string | null
+          email?: string
           id?: string
           is_active?: boolean | null
-          name?: string | null
+          name?: string
+          neighborhood?: string | null
+          number?: string | null
           phone?: string | null
-          updated_at?: string | null
+          site?: string | null
+          state?: string | null
+          street?: string | null
         }
         Relationships: []
       }

@@ -11,13 +11,19 @@ import {
   Stack,
   Text,
 } from '@mantine/core';
-import { Client } from '../../views/Client.page';
+import { Client } from '../../model/client';
 
 type ClientDrawerProps = {
   data?: Client;
 } & DrawerProps;
 
-const DisplayValue = ({ label, value = '-' }: { label: string; value?: string | number }) => {
+const DisplayValue = ({
+  label,
+  value = '-',
+}: {
+  label: string;
+  value?: string | number | null;
+}) => {
   return (
     <div arial-label={label}>
       <Text size="xs" c="dark.9" fw={600} tt="capitalize" fz="xs">
@@ -44,7 +50,7 @@ export const ClientDrawer = ({ data, ...props }: ClientDrawerProps) => {
             </Text>
 
             <Text size="xs" c="dimmed">
-              {data?.cpfOrCnpj}
+              {data?.document || '-'}
             </Text>
           </Box>
           <Drawer.CloseButton />
@@ -79,18 +85,18 @@ export const ClientDrawer = ({ data, ...props }: ClientDrawerProps) => {
               <DisplayValue label="Empresa (Razão Social)" value={data?.company} />
             </SimpleGrid>
 
-            <DisplayValue label="CNPJ/CPF" value={data?.cpfOrCnpj} />
+            <DisplayValue label="CNPJ/CPF" value={data?.document} />
           </Stack>
           <Divider my="xs" label="Informações da empresa" labelPosition="left" />
           <Stack gap="xs">
             <SimpleGrid cols={{ base: 1, xs: 2 }}>
-              <DisplayValue label="CEP" value={data?.address?.cep} />
+              <DisplayValue label="CEP" value={data?.cep} />
               <DisplayValue label="Site" value={data?.site} />
-              <DisplayValue label="Endereço" value={data?.address?.neighborhood} />
               <DisplayValue
-                label="Cidade"
-                value={`${data?.address?.city} - ${data?.address?.state}`}
+                label="Endereço"
+                value={`${data?.street} ${data?.neighborhood} ${data?.number}`}
               />
+              <DisplayValue label="Cidade" value={`${data?.city} - ${data?.state}`} />
             </SimpleGrid>
           </Stack>
         </Drawer.Body>

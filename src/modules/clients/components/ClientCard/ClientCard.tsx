@@ -3,76 +3,106 @@ import {
   IconEdit,
   IconEye,
   IconFolderSearch,
-  IconInfoCircle,
   IconMail,
   IconTrash,
   IconWorld,
 } from '@tabler/icons-react';
 import {
   ActionIcon,
-  Alert,
   Box,
   Button,
+  CopyButton,
   Divider,
   Flex,
   Group,
-  Modal,
   Paper,
   rem,
   Text,
+  Tooltip,
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { notifications } from '@mantine/notifications';
-import { Client } from '../../views/Client.page';
+import { Client } from '../../model/client';
 
 type ClientCardProps = {
   onView?: () => void;
   onEdit?: () => void;
   onDelete?: () => void;
   onViewBudgets?: () => void;
-} & Client;
+  data?: Client;
+};
 
-export const ClientCard = ({
-  name = 'Cliente não identificado',
-  cpfOrCnpj,
-  onView,
-  onEdit,
-  onDelete,
-  onViewBudgets,
-}: ClientCardProps) => {
-  const [opened, { open, close }] = useDisclosure(false);
-
-  const handleClose = () => {
-    close();
-    notifications.show({
-      title: 'Cancelado',
-      message: 'Exclusão cancelada',
-      color: 'gray',
-    });
-  };
+export const ClientCard = ({ data, onView, onEdit, onDelete, onViewBudgets }: ClientCardProps) => {
   return (
     <Paper p="sm">
       <Group justify="space-between">
         <Box>
           <Text size="sm" fw={500}>
-            {name}
+            {data?.name}
           </Text>
 
           <Text size="xs" c="dimmed">
-            {cpfOrCnpj}
+            {data?.email}
           </Text>
         </Box>
 
         <Group gap="xs">
-          <ActionIcon variant="light" size="md">
-            <IconBrandWhatsapp style={{ width: rem(16) }} stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon variant="light" size="md">
-            <IconMail style={{ width: rem(16) }} stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon variant="light" size="md">
-            <IconWorld style={{ width: rem(16) }} stroke={1.5} />
-          </ActionIcon>
+          <CopyButton value={data?.phone || ''} timeout={2000}>
+            {({ copied, copy }) => (
+              <Tooltip
+                label={copied ? 'Copiado' : 'Copiar'}
+                withArrow
+                position="right"
+                disabled={!data?.phone}
+              >
+                <ActionIcon
+                  color={copied ? 'teal' : 'estimou'}
+                  variant="subtle"
+                  onClick={copy}
+                  disabled={!data?.phone}
+                >
+                  <IconBrandWhatsapp style={{ width: rem(16) }} stroke={1.5} />
+                </ActionIcon>
+              </Tooltip>
+            )}
+          </CopyButton>
+          <CopyButton value={data?.email || ''} timeout={2000}>
+            {({ copied, copy }) => (
+              <Tooltip
+                label={copied ? 'Copiado' : 'Copiar'}
+                withArrow
+                position="right"
+                disabled={!data?.email}
+              >
+                <ActionIcon
+                  color={copied ? 'teal' : 'estimou'}
+                  variant="subtle"
+                  onClick={copy}
+                  disabled={!data?.email}
+                >
+                  <IconMail style={{ width: rem(16) }} stroke={1.5} />
+                </ActionIcon>
+              </Tooltip>
+            )}
+          </CopyButton>
+
+          <CopyButton value={data?.site || ''} timeout={2000}>
+            {({ copied, copy }) => (
+              <Tooltip
+                label={copied ? 'Copiado' : 'Copiar'}
+                withArrow
+                position="right"
+                disabled={!data?.site}
+              >
+                <ActionIcon
+                  disabled={!data?.site}
+                  color={copied ? 'teal' : 'estimou'}
+                  variant="subtle"
+                  onClick={copy}
+                >
+                  <IconWorld style={{ width: rem(16) }} stroke={1.5} />
+                </ActionIcon>
+              </Tooltip>
+            )}
+          </CopyButton>
         </Group>
       </Group>
       <Divider my="sm" />
@@ -90,6 +120,7 @@ export const ClientCard = ({
             w={{ base: '100%', md: 'auto' }}
             variant="light"
             onClick={onViewBudgets}
+            disabled={!data?.budgets}
             leftSection={<IconEye style={{ width: rem(16) }} stroke={1.5} />}
           >
             Orçamentos
@@ -119,26 +150,12 @@ export const ClientCard = ({
             w={{ base: '100%', md: 'auto' }}
             variant="outline"
             color="red"
-            onClick={open}
+            onClick={onDelete}
           >
             <IconTrash style={{ width: rem(16) }} stroke={1.5} />
           </Button>
         </Flex>
       </Flex>
-      <Modal opened={opened} onClose={handleClose} title="Excluir" centered>
-        <Text my="md">Tem certeza que deseja excluir o cliente?</Text>
-        <Alert variant="light" color="red" title="ATENÇÃO:" icon={<IconInfoCircle />}>
-          Todos os orçamentos deste cliente serão excluidos
-        </Alert>
-        <Group justify="flex-end" mt="md">
-          <Button onClick={handleClose} variant="default">
-            Cancelar
-          </Button>
-          <Button color="red" onClick={onDelete}>
-            Excluir
-          </Button>
-        </Group>
-      </Modal>
     </Paper>
   );
 };

@@ -1,17 +1,30 @@
+import { useEffect } from 'react';
 import { Outlet, useNavigation } from 'react-router';
 import { Box, Drawer, Flex, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { NavigationProgress, nprogress } from '@mantine/nprogress';
 import { AppHeader } from '../AppHeader';
 import { Navbar } from '../Navbar/Navbar';
 import { TapBar } from '../TapBar';
 
 export const AppWrapper = () => {
-  const navigation = useNavigation();
+  const { state } = useNavigation();
   const [opened, { open, close }] = useDisclosure(false);
   const sidebarWidth = 300;
 
+  useEffect(() => {
+    if (state === 'loading') {
+      nprogress.start();
+    }
+
+    if (state === 'idle') {
+      nprogress.complete();
+    }
+  }, [state]);
+
   return (
     <Flex align="stretch" bg="gray.0" pos="relative">
+      <NavigationProgress />
       {/* Sidebar */}
       <Box
         display={{ base: 'none', lg: 'block' }}
@@ -32,12 +45,7 @@ export const AppWrapper = () => {
       {/* Main Content */}
       <Stack gap="md" flex={1} p="md" mih="100vh" ml={{ lg: sidebarWidth }}>
         <AppHeader onOpenMenu={open} />
-        <Box
-          flex="1"
-          pt="md"
-          pb={{ base: 70, md: 0 }}
-          opacity={navigation.state === 'loading' ? 0.5 : 1}
-        >
+        <Box flex="1" pt="md" pb={{ base: 70, md: 0 }} opacity={state === 'loading' ? 0.5 : 1}>
           <Outlet />
         </Box>
       </Stack>

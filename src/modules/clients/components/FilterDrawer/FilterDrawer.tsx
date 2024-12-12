@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { IconFilter, IconInfoCircle } from '@tabler/icons-react';
 import {
   Alert,
@@ -13,12 +14,38 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
-export const FilterDrawer = () => {
+type Filter = {
+  name?: string;
+  email?: string;
+  phone?: string;
+};
+type FilterDrawerProps = {
+  onFilter: (filters: Filter) => void;
+};
+
+export const FilterDrawer = ({ onFilter }: FilterDrawerProps) => {
+  const [filters, setFilters] = useState<Filter>({
+    name: '',
+    email: '',
+    phone: '',
+  });
   const [opened, { open, close }] = useDisclosure(false);
 
-  const handleClose = () => {
+  const handleFilters = (filters: Partial<Filter>) => {
+    setFilters((prev) => ({ ...prev, ...filters }));
+  };
+
+  const handleAplyFilters = () => {
+    onFilter(filters);
     close();
   };
+
+  const handleClearFilters = () => {
+    setFilters({});
+    onFilter({});
+    close();
+  };
+
   return (
     <>
       <Drawer
@@ -36,16 +63,33 @@ export const FilterDrawer = () => {
             </Alert>
             <Divider my="sm" />
             <SimpleGrid>
-              <TextInput placeholder="Nome" label="Filtro por nome" />
-              <TextInput placeholder="Telefone" label="Filtro por telefone" />
-              <TextInput placeholder="Email" label="Filtro por email" />
+              <TextInput
+                placeholder="Nome"
+                onChange={(e) => handleFilters({ name: e.target.value })}
+                value={filters.name}
+                label="Filtro por nome"
+              />
+              <TextInput
+                placeholder="Telefone"
+                onChange={(e) => handleFilters({ phone: e.target.value })}
+                value={filters.phone}
+                label="Filtro por telefone"
+              />
+              <TextInput
+                placeholder="Email"
+                onChange={(e) => handleFilters({ email: e.target.value })}
+                value={filters.email}
+                label="Filtro por email"
+              />
             </SimpleGrid>
             <Divider my="sm" mt="xl" />
             <Flex justify="flex-end" direction={{ base: 'column', md: 'row' }} gap="sm">
-              <Button variant="default" onClick={handleClose}>
+              <Button variant="default" onClick={handleClearFilters}>
                 Limpar filtro
               </Button>
-              <Button>Aplicar filtro</Button>
+              <Button onClick={handleAplyFilters} disabled={!Object.keys(filters).length}>
+                Aplicar filtro
+              </Button>
             </Flex>
           </Box>
         </Stack>

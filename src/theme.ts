@@ -1,4 +1,4 @@
-import { createTheme, MantineColorsTuple } from '@mantine/core';
+import { createTheme, InputBase, MantineColorsTuple, TextInput } from '@mantine/core';
 
 const estimou: MantineColorsTuple = [
   '#e3fdf9',
@@ -42,6 +42,31 @@ export const theme = createTheme({
       'rgba(0, 0, 0, 0.08)',
       'rgba(0, 0, 0, 0.09)',
     ],
+  },
+  components: {
+    TextInput: TextInput.extend({
+      styles: (theme) => ({
+        label: {
+          marginBottom: '4px',
+          color: theme.colors.dark[5],
+        },
+      }),
+    }),
+    InputBase: InputBase.extend({
+      styles: (theme) => ({
+        label: {
+          marginBottom: '4px',
+          color: theme.colors.dark[5],
+        },
+      }),
+    }),
+    Input: InputBase.extend({
+      styles: (theme) => ({
+        input: {
+          color: theme.colors.dark[3],
+        },
+      }),
+    }),
   },
 
   primaryColor: 'estimou',
