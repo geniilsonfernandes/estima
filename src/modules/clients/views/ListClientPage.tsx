@@ -106,7 +106,7 @@ const ListClientPage = () => {
           onrightButtonClick={() => navigate('create')}
         />
       )}
-      {clients?.data.length > 0 && (
+      {clients?.data && (
         <Stack gap="xs" justify="space-between" mih="calc(100vh - 180px)">
           <SimpleGrid cols={1}>
             {clients?.data.map((client) => (
