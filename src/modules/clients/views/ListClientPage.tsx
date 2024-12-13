@@ -106,18 +106,19 @@ const ListClientPage = () => {
           onrightButtonClick={() => navigate('create')}
         />
       )}
-
-      {clients?.data.map((client) => (
+      {clients?.data.length > 0 && (
         <Stack gap="xs" justify="space-between" mih="calc(100vh - 180px)">
           <SimpleGrid cols={1}>
-            <ClientCard
-              key={client.id}
-              data={client}
-              onView={() => setClientDrawerData(client)}
-              onEdit={() => navigate(`edit/${client.id}`)}
-              onDelete={() => setClientToDelete(client)}
-              onViewBudgets={() => handleBudgetDrawerOpen({ id: client.id })}
-            />
+            {clients?.data.map((client) => (
+              <ClientCard
+                key={client.id}
+                data={client}
+                onView={() => setClientDrawerData(client)}
+                onEdit={() => navigate(`edit/${client.id}`)}
+                onDelete={() => setClientToDelete(client)}
+                onViewBudgets={() => handleBudgetDrawerOpen({ id: client.id })}
+              />
+            ))}
           </SimpleGrid>
           <Pagination
             info={`${clients?.page} de ${clients?.totalPages} páginas`}
@@ -127,7 +128,7 @@ const ListClientPage = () => {
             nextPage={handleNextPage}
           />
         </Stack>
-      ))}
+      )}
 
       <ClientDrawer
         opened={!!clientDrawerData}
