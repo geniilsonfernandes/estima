@@ -38,7 +38,6 @@ export const ClientCard = ({ data, onView, onEdit, onDelete, onViewBudgets }: Cl
           <Text size="sm" fw={500}>
             {data?.name}
           </Text>
-
           <Text size="xs" c="dimmed">
             {data?.email}
           </Text>

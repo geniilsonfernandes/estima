@@ -10,7 +10,7 @@ import { TapBar } from '../TapBar';
 export const AppWrapper = () => {
   const { state } = useNavigation();
   const [opened, { open, close }] = useDisclosure(false);
-  const sidebarWidth = 300;
+  const sidebarWidth = 240;
 
   useEffect(() => {
     if (state === 'loading') {

@@ -1,16 +1,22 @@
-import { createTheme, InputBase, MantineColorsTuple, TextInput } from '@mantine/core';
+import {
+  createTheme,
+  InputBase,
+  MantineColorsTuple,
+  PasswordInput,
+  TextInput,
+} from '@mantine/core';
 
 const estimou: MantineColorsTuple = [
-  '#e3fdf9',
-  '#d5f5ef',
-  '#b1e7de',
-  '#89d9cb',
-  '#68ccbb',
-  '#52c5b1',
-  '#43c2ac',
-  '#31ab97',
-  '#229886',
-  '#1D463E',
+  '#effbf3',
+  '#def4e6',
+  '#b8e8c9',
+  '#8fddaa',
+  '#6dd390',
+  '#58cd7f',
+  '#4dca76',
+  '#3eb264',
+  '#074E3A',
+  '#012C23',
 ];
 const base: MantineColorsTuple = [
   '#f9f9f9',
@@ -53,6 +59,14 @@ export const theme = createTheme({
       }),
     }),
     InputBase: InputBase.extend({
+      styles: (theme) => ({
+        label: {
+          marginBottom: '4px',
+          color: theme.colors.dark[5],
+        },
+      }),
+    }),
+    PasswordInput: PasswordInput.extend({
       styles: (theme) => ({
         label: {
           marginBottom: '4px',

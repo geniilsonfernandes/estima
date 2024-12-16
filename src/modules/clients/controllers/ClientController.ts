@@ -10,6 +10,8 @@ export type GetClientsQuery = {
   phone?: string;
 };
 
+const TABLE_NAME = 'clients';
+
 export class CustomError extends Error {
   public status: number;
   public statusText: string;
@@ -44,7 +46,7 @@ export async function updateClient(id: string, clientData: UpdateClientDTO) {
 }
 
 export async function createClient(clientData: CreateClientDTO) {
-  const { data, error, status, statusText } = await supabase.from('clients').insert([clientData]);
+  const { data, error, status, statusText } = await supabase.from(TABLE_NAME).insert([clientData]);
 
   if (error) {
     throw new CustomError(error.message, status, statusText, error.details);
@@ -58,7 +60,7 @@ export async function getClient(id: string) {
     throw new Error('ID do cliente obrigatório');
   }
   const { data, error, status, statusText } = await supabase
-    .from('clients')
+    .from(TABLE_NAME)
     .select('*')
     .eq('id', id)
     .single();
@@ -76,7 +78,7 @@ export async function getClients(query?: GetClientsQuery, page: number = 1, page
 
   // Base query
   const builder = supabase
-    .from('clients')
+    .from(TABLE_NAME)
     .select('*', { count: 'exact' }) // 'exact' retorna o total de registros na tabela
     .order('name', { ascending: true });
 
@@ -116,7 +118,7 @@ export async function deleteClient(id?: string) {
   if (!id) {
     throw new Error('ID do cliente obrigatório');
   }
-  const { error, status, statusText } = await supabase.from('clients').delete().eq('id', id);
+  const { error, status, statusText } = await supabase.from(TABLE_NAME).delete().eq('id', id);
 
   if (error) {
     throw new CustomError(error.message, status, statusText, error.details);

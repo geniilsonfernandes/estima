@@ -1,16 +1,17 @@
 import {
   IconBuilding,
   IconChartBar,
+  IconCheck,
   IconListDetails,
-  IconLogout,
   IconSettings,
-  IconSwitchHorizontal,
   IconTools,
   IconUsers,
 } from '@tabler/icons-react';
 import { NavLink } from 'react-router';
-import { Group } from '@mantine/core';
+import { ActionIcon, Box, Center, Flex, Group, rem, RingProgress, Title } from '@mantine/core';
 import { Logo } from '@/shared/components/Logo';
+import { useAuth } from '@/shared/hooks/useAuth';
+import { UserMenu } from '../UserButton';
 import classes from './NavbarSimple.module.css';
 
 const data = [
@@ -23,6 +24,7 @@ const data = [
 ];
 
 export function Navbar() {
+  const { session } = useAuth();
   const links = data.map((item) => (
     <NavLink
       className={({ isActive }) => `${classes.link} ${isActive ? classes.active : ''}`}
@@ -43,17 +45,30 @@ export function Navbar() {
         {links}
       </div>
 
-      <div className={classes.footer}>
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
-          <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />
-          <span>Help</span>
-        </a>
-
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
-          <IconLogout className={classes.linkIcon} stroke={1.5} />
-          <span>Logout</span>
-        </a>
-      </div>
+      <Flex p="sm" bg="estimou.9" align="center" justify="space-between">
+        <RingProgress
+          size={40}
+          thickness={3}
+          sections={[{ value: 40, color: 'teal' }]}
+          rootColor="white"
+          label={
+            <Center>
+              <ActionIcon color="teal" variant="light" radius="xl" size="xs">
+                <IconCheck style={{ width: rem(16), height: rem(16) }} />
+              </ActionIcon>
+            </Center>
+          }
+        />
+        <Title order={5} fz="xs" c="white">
+          Perfil de sucesso
+        </Title>
+        <Title order={5} fz="sm" c="dimmed">
+          40%
+        </Title>
+      </Flex>
+      <Box p="xs">
+        <UserMenu user={session?.user} />
+      </Box>
     </nav>
   );
 }

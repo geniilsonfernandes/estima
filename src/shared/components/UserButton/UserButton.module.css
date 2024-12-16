@@ -1,7 +1,9 @@
 .user {
-  display: block;
-  padding: var(--mantine-spacing-xs);
-  color:(var(--mantine-color-black));
+  display: flex;
+  gap: var(--mantine-spacing-xs);
+  width: 100%;
+  padding: 6px;
+  color:var(--mantine-color-black);
   border-radius: var(--mantine-radius-md);
 
   @mixin hover {

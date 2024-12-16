@@ -1,32 +1,21 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { notifications } from '@mantine/notifications';
-import {
-  createClient as createClientController,
-  CreateClientDTO,
-  CustomError,
-} from '../controllers/ClientController';
-import { clientKeys } from './useListClient';
+import { CustomError } from '@/shared/utils/customError';
+import { signIn as signInController, SignUpDTO } from '../controllers/authController';
 
-type UseCreateClientProps = {
+type UseSignInProps = {
   onSuccess?: () => void;
 };
 
-export const useCreateClient = ({ onSuccess }: UseCreateClientProps) => {
-  const queryClient = useQueryClient();
-
+export const useSignIn = ({ onSuccess }: UseSignInProps = {}) => {
   return useMutation({
-    mutationFn: (clientData: CreateClientDTO) => createClientController(clientData),
+    mutationFn: (data: SignUpDTO) => signInController(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: clientKeys.all(),
-      });
-
       notifications.show({
         title: 'Sucesso',
-        message: 'Cliente criado com sucesso',
+        message: 'Login realizado com sucesso',
         color: 'green',
       });
-
       onSuccess?.();
     },
     onError: (error: any) => {
